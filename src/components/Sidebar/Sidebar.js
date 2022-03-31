@@ -31,7 +31,7 @@ const Sidebar = () => {
               isActive ? 'activeClicked' : undefined }>
               <CDBSidebarMenuItem  className="item" icon='home'>Panel</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink  to="/tables" className={({ isActive }) =>
+            <NavLink  to="/alumnos" className={({ isActive }) =>
               isActive ? 'activeClicked' : undefined }
             >
               <CDBSidebarMenuItem className="item"

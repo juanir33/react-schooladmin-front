@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { Tables } from '../Footer/Table'
+import { Tables } from '../Tables/Table'
 import NavBar from '../Navbar/Navbar'
 import Sidebar from '../Sidebar/Sidebar'
 
