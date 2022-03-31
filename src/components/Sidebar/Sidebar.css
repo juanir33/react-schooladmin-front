@@ -1,0 +1,31 @@
+body{
+    color: #fff
+}
+
+.side-head{
+    height: 100vh; 
+    overflow: scroll;
+   
+}    
+    
+
+.foot{
+    text-decoration: none;
+    color: var(--skobeloff)
+}
+.item:hover{
+    background-color: var(--skobeloff);
+    color: var(--platinum);
+   
+    border-radius: 4px;
+    
+}
+.cCHlrf .activeClicked >li {
+   
+    background-color: var(--skobeloff);
+    color: var(--platinum);
+    
+   
+    border-radius: 5px;
+
+}

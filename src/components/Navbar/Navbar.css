@@ -1,0 +1,37 @@
+.nav-head{
+    background-color: var(--platinum);
+    justify-content: flex-end !important;
+    
+   
+}
+.nav-buttons{
+    background-color: var(--skobeloff) !important;
+    color: var(--platinum) !important;
+    border: none !important;
+}
+.nav-buttons:hover {
+     
+    background-color: var(--platinum) !important;
+    color: var(--skobeloff) !important
+
+}
+
+
+.nav-buttons:focus{
+    box-shadow: none !important;
+}
+
+.bad{
+    background-color: var(--teal) ;
+}
+.nav-text{
+    color: var(--teal) !important;
+    font-weight: 800;
+
+}
+
+
+#user-a{
+    color: var(--teal);
+    font-weight: 800;
+}

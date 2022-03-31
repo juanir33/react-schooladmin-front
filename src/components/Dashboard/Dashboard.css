@@ -1,0 +1,8 @@
+.nav{
+    flex: 1 1 auto;
+    height: 100vh;
+    overflow-y: hidden;
+}
+.main-content{
+    margin: 1em, 0.5em, 0.5em, 2em;
+}

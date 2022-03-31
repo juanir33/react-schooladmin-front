@@ -1,3 +1,11 @@
+:root{
+  --skobeloff: #006165ff;
+  --teal: #2d7f83ff;
+  --cadet-blue: #7da4a7ff;
+  --ash-gray: #bfd0d1ff;
+  --platinum: #e6ececff;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -10,4 +18,17 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+.btns{
+  background-color: var(--skobeloff) !important;
+  color: var(--platinum) !important;
+  border: none !important;
+}
+.btns:hover{
+  background-color: var(--platinum) !important;
+  color: var(--skobeloff) !important;
+  border: none !important;
+}
+.btns:focus{
+  box-shadow: none !important;
 }
