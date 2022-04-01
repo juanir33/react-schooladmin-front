@@ -1,11 +1,8 @@
 
 import './App.css';
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
 import Dashboard from './components/Dashboard/Dashboard';
-
-import { Tables } from './components/Footer/Table';
+import { Tables } from './components/Tables/Table';
 import Alumnos from './pages/Alumnos';
 import Login from './pages/Login';
 
