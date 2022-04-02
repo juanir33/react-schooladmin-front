@@ -8,13 +8,18 @@ import {
 } from "cdbreact";
 
 import { NavLink } from "react-router-dom";
+import { alumno , preceptor, profesor } from "../../constants/roles";
 import sideLs from "../../constants/sideLinks";
 
 import "./Sidebar.css";
+let user = {name:'juan', rol: [profesor]}
 
+let userLinks = user.rol
 
+console.log(user.rol);
+console.log(profesor);
 const Sidebar = () => {
-  const links = sideLs.map((link, index) =>  {
+  const links = userLinks[0].map((link, index) =>  {
     return (
       <NavLink
         key={index}
