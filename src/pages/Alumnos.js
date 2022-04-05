@@ -1,11 +1,17 @@
 import React from 'react'
+import Dashboard from '../components/Dashboard/Dashboard'
+import NavBar from '../components/Navbar/Navbar'
+import Sidebar from '../components/Sidebar/Sidebar'
+import { Tables } from '../components/Tables/Table'
 
 function Alumnos() {
   return (
     
 
     <div className="d-flex justify-content-center align-item-center h-75">
-        <h1>Pagina de Alumnos</h1>
+        <Dashboard children={<Tables/>}/>
+        
+        
     </div>
   )
 }

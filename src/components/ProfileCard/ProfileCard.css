@@ -1,0 +1,40 @@
+.profile-card
+{
+    background-color: var(--cadet-blue);
+    color: white;
+    border-bottom-left-radius: 14px !important;
+    border-top-right-radius: 14px !important;
+}
+
+.icon{
+    color: var(--skobeloff)
+}
+.tool {
+    position: relative;
+    display: inline-block;
+    background-color: var(--ash-gray);
+    color: white;
+    border-bottom: 1px solid var(--skobeloff)!important;
+    border-bottom-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+ .tiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--skobeloff);
+    color: var(--platinum);
+    text-align: center;
+    border-radius: 3px;
+    padding: 6px 0;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-left: -60px;
+    bottom: 150%;
+    left: 50%;
+}
+
+
+.tool:hover .tiptext {
+    visibility: visible;
+}

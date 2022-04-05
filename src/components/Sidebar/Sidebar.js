@@ -11,15 +11,18 @@ import { NavLink } from "react-router-dom";
 import { alumno , preceptor, profesor } from "../../constants/roles";
 import sideLs from "../../constants/sideLinks";
 
+
 import "./Sidebar.css";
-let user = {name:'juan', rol: [profesor]}
 
-let userLinks = user.rol
+//No logro hacer que me filtre los links segun el rol de usuario asi que cree cada rol por separado y se
+//habria que guardarlo como [] a dicho rol o buscar la solucion al problema 
+let user = {name:'juan', rol: profesor}
 
-console.log(user.rol);
-console.log(profesor);
+
+
+
 const Sidebar = () => {
-  const links = userLinks[0].map((link, index) =>  {
+  const links = sideLs.map((link, index) =>  {
     return (
       <NavLink
         key={index}
