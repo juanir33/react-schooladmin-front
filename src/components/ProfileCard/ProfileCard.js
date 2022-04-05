@@ -15,7 +15,7 @@ const ProfileCard = () => {
         </div>
       </Card.Body>
       <ListGroup className="list-group-flush ">
-        <ListGroupItem className='tool '><RiCalendarTodoFill className='mx-2 icon ' /> <span className='tiptext'>Fecha de Ingreso</span> 20/03/2013</ListGroupItem>
+        <ListGroupItem className='tool'><RiCalendarTodoFill className='mx-2 icon ' /> <span className='tiptext'>Fecha de Ingreso</span> 20/03/2013</ListGroupItem>
         <ListGroupItem className='tool'><FaWhatsapp className='mx-2 icon'/>  +54935844678903 <span className='tiptext'>Telefono personal</span> </ListGroupItem>
         <ListGroupItem className='tool'><RiMailFill className='mx-2 icon'/>  raulsito@gmail.com <span className='tiptext'>Mail personal</span> </ListGroupItem>
         <ListGroupItem className='tool'><FaIdBadge className='mx-2 icon'/>  345j455j55 <span className='tiptext'>Id</span> </ListGroupItem>

@@ -2,8 +2,8 @@
 {
     background-color: var(--cadet-blue);
     color: white;
-    border-bottom-left-radius: 14px !important;
-    border-top-right-radius: 14px !important;
+    border-bottom-left-radius: 14px ;
+    border-top-right-radius: 14px ;
 }
 .profile-card:hover{
     transform: translateY(6px);
@@ -19,9 +19,11 @@
     display: inline-block;
     background-color: var(--ash-gray);
     color: white;
-    border-bottom: 1px solid var(--skobeloff)!important;
-    border-bottom-left-radius: 14px;
+    /* border-bottom: 1px solid var(--skobeloff)!important; */
+    border-bottom-left-radius: 14px ;
+    
     border-top-right-radius: 14px;
+    margin-bottom: 1px;
 }
  .tiptext {
     visibility: hidden;
@@ -42,4 +44,14 @@
 
 .tool:hover .tiptext {
     visibility: visible;
+    
+
+}
+.tool:hover  {
+   
+    transform: translateX(3px);
+    border-bottom-right-radius: 14px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
 }
