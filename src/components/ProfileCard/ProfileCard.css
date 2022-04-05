@@ -5,7 +5,12 @@
     border-bottom-left-radius: 14px !important;
     border-top-right-radius: 14px !important;
 }
-
+.profile-card:hover{
+    transform: translateY(6px);
+    box-shadow: 6px 6px 9px -1px rgba(45,127,131,0.8);
+    -webkit-box-shadow: 6px 6px 9px -1px rgba(45,127,131,0.8);
+    -moz-box-shadow: 6px 6px 9px -1px rgba(45,127,131,0.8);
+}
 .icon{
     color: var(--skobeloff)
 }
