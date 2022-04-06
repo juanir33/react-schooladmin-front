@@ -2,17 +2,18 @@ import React from 'react'
 import Dashboard from '../components/Dashboard/Dashboard'
 import NavBar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
-import { Tables } from '../components/Tables/Table'
+import TablesMaterias from '../components/Tables/TableMaterias'
+import { Tables } from '../components/Tables/TableNotasAlumnos'
 
 function Alumnos() {
   return (
     
 
-    <div className="d-flex justify-content-center align-item-center h-75">
-        <Dashboard children={<Tables/>}/>
+    <div className="container w-75 d-flex justify-content-center">
+        <TablesMaterias/>
         
-        
-    </div>
+      </div>  
+    
   )
 }
 

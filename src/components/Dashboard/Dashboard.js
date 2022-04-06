@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tables } from "../Tables/Table";
+import { Tables } from "../Tables/TableNotasAlumnos";
 import NavBar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Cards from "../Cards/Cards";
@@ -23,7 +23,7 @@ const Dashboard = ({children}) => {
          {children} 
         <ProfileCard/>
         <ProfileCard/>
-          <Cards/>
+        
           
         </div>
         <br />
