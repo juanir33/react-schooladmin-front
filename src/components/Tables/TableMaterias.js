@@ -1,63 +1,56 @@
 import React from "react";
-import { Button, Col, Form, Table } from "react-bootstrap";
+import { Button, Col, Form, FormControl, Table } from "react-bootstrap";
 import './TableMaterias.css';
 
-const alumnos = [
+const data = [
   {name: 'Jaimito',
-  id:'J1',
-   notas:[{
-     matName:'matematica',
-      primer:{
-        nota1:'2',
-        nota2:'3'
-      },
-    segundo:{
-      nota1:'4',
-        nota2:'5'
-
-    },
-  promedio:'7'}]},
-  {name: 'Jaimita',
+   id:'J1',
+   
+   mat:[{matName: 'Matematica', nota1: '',nota2: 4,nota3: 5,nota4:6,nota5: 7},{matName: 'Lengua', nota1: 3,nota2: 4,nota3: 5,nota4: 7,nota5: 9}]},
+   {name: 'Jaimita',
    id:'J2',
-    
-      matName:'matematica',
-       primer:{
-         nota1:'4',
-         nota2:'5'
-       },
-     segundo:{
-       nota1:'6',
-         nota2:'6'
- 
-     },
-   promedio:'6'}
+   
+    mat:[{matName: 'Matematica', nota1: 3,nota2:1,nota3: 7,nota4: 8,nota5: 9},{matName: 'Lengua', nota1: 9,nota2: 9,nota3: 9,nota4: 9,nota5: 9}]},
+   {name: 'Jasinta',
+   id:'J3',
+   
+    mat:[{matName: 'Matematica', nota1: 10,nota2: 3,nota3: 6,nota4: 9,nota5: 10},{matName: 'Lengua', nota1:7,nota2: 6,nota3: 6,nota4:6,nota5: 4}]},
+   
   
 ]
-const alumnosList = alumnos.map(alumno => {return( <tr>
-          
-  <td>{alumno.name}</td>
-  <td>{alumno.primer.nota1}</td>
-  <td>{alumno.primer.nota2}</td>
-  
-  <td></td>
-  <td>9</td>
-  <td>3</td>
-  
-  <td></td>
-  
-  <td></td>
-  
-</tr>
 
-)})
+const matActual = 'Matematica' 
+
+const filter = data.map( date => {return {id:date.id, name:date.name, notas: (date.mat.filter( el => el.matName === matActual).map(item => {return ([ item.nota1,  item.nota2, item.nota3, item.nota4,  item.nota5,] )}))}})
+console.log(filter);
+
+const listafiltrada= filter.map( (fil  ) => {return (<tr key={fil.id}>
+  <td>{fil.name}</td>
+  <td><Form.Control type= 'number' min='0' max='10' step='0.01' /> </td>
+  <td>{fil.notas[0][1]}</td>
+  
+  <td>{fil.notas[0][2]}</td>
+  <td>{fil.notas[0][3]}</td>
+  <td>{fil.notas[0][4]}</td>
+  
+  <th>{Math.floor((fil.notas[0][0]+fil.notas[0][1]+fil.notas[0][2]+fil.notas[0][3]+fil.notas[0][4])/5)}</th>
+  
+  
+ 
+</tr>)})
+
+
+console.log();
+
+
 export const TablesMaterias = () => {
-  const pMedio = (a , b , c) =>{
-    const promedio = Math.floor((a+b+c)/3)
-    return promedio
-  }
+ 
+  
   return (
+    <>
+    <Form/>
     <Table bordered hover responsive className="m-4 w-100">
-      <Form/>
+      
       <thead>
         <tr>
           <th colSpan="2" className="text-align-center">
@@ -84,35 +77,27 @@ export const TablesMaterias = () => {
           <th>1er</th>
           <th>2do</th>
           
-          <th>Promedio</th>
-          <th>1er</th>
-          <th>2do</th>
+          <th>3ero</th>
+          <th>4to</th>
+          <th>5to</th>
           
           <th>Promedio</th>
           
-          <th>Promedio</th>
+          
          
         </tr>
-        <tr>
+        
+        
+          {listafiltrada}
           
-          <td>MATEMATICA</td>
-          <td>2</td>
-          <td>2</td>
-          
-          <td>{pMedio(5, 3, 8)}</td>
-          <td>9</td>
-          <td>3</td>
-          
-          <td>{pMedio(9, 3, 10)}</td>
-          
-          <td>{pMedio(5, 7, 2)}</td>
-          
-        </tr>
+        
         
         
       </tbody>
-      <Form/>
+      
     </Table>
+    <Form/>
+    </>
   );
 };
 
