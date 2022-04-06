@@ -23,7 +23,7 @@ const matActual = 'Matematica'
 
 const filter = data.map( date => {return {id:date.id, name:date.name, notas: (date.mat.filter( el => el.matName === matActual).map(item => {return ([ item.nota1,  item.nota2, item.nota3, item.nota4,  item.nota5,] )}))}})
 console.log(filter);
-
+// queda conseguir que aparezca el formulario para editar la nota cuando esta vacio el valor de la misma y muestre cuando hay una creada
 const listafiltrada= filter.map( (fil  ) => {return (<tr key={fil.id}>
   <td>{fil.name}</td>
   <td><Form.Control type= 'number' min='0' max='10' step='0.01' /> </td>
