@@ -1,10 +1,19 @@
 import React from 'react'
 
-function MainDash({Children}) {
+
+
+function MainDash({children}) {
   return (
-    <div>
-        <Children/>
-    </div>
+    <div className="d-flex w-90 justify-content-between m-2">
+        <div className="d-flex  ">
+        {children}
+        </div>
+        <div className="d-flex  ">
+        
+        </div>
+        
+
+    </div>    
   )
 }
 
