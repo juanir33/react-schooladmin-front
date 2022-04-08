@@ -3,7 +3,7 @@ export const validationRegister = values => {
   
     if(!values.name) {
       errors.name = 'El nombre es obligatorio';
-    } else if(values.name.length > 30) {
+    } else if(values.name.length > 15) {
       errors.name = 'El nombre no puede tener más de 30 caracteres';
     }
     if (!values.lastname) {

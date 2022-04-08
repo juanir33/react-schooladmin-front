@@ -9,7 +9,7 @@ const useForm = (initialState, validate, submit) => {
   useEffect(() => {
     if(submitting) {
       if(Object.keys(errors).length === 0) {
-        submit();
+        submit(values);
       }
       setSubmitting(false);
     }
@@ -39,3 +39,4 @@ const useForm = (initialState, validate, submit) => {
 }
  
 export default useForm;
+
