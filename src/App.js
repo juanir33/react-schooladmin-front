@@ -4,7 +4,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import { Tables } from "./components/Tables/TableNotasAlumnos";
 import Alumnos from "./pages/Alumnos";
 import Login from "./pages/Login";
-import Adduser from "./components/addUser"
+import AddUsers from "./components/AddUsers/AddUsers";
 
 function App() {
   return (
@@ -14,7 +14,7 @@ function App() {
         <Route path="/usuarios" element={<Tables />} />
         <Route path="/alumnos" element={<Alumnos />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/adduser" element={<Adduser />} />
+        <Route path="/AddUsers" element={<AddUsers />} />
       </Routes>
     </Router>
   );

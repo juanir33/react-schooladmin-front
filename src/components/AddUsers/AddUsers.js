@@ -1,6 +1,7 @@
 import { useState } from "react";
 import uniqid from "uniqid"; // instalamos con npm install uniqid
 import { Form } from "react-bootstrap";
+import './AddUsers.css';
 
 const Adduser = () => {
   const [name, setName] = useState("");
@@ -8,20 +9,14 @@ const Adduser = () => {
   const [email, setEmail] = useState("");
   const [tel, setTel] = useState("");
   const [password, setPassword] = useState("");
-  const [rol, setRol] = useState("Alumno");
-  const [materia, setMateria] = useState('nada');
+  const [rol, setRol] = useState("");
+  const [lenguas, setLenguas] = useState('');
+  const [matematicas, setMatematicas] = useState('');
+  const [fisica, setFisica] = useState('');
+  const [geografia, setGeografia] = useState('');
+  const [quimica, setQuimica] = useState('');
 
-  const addMateria = () => {
-      var materias = {
-          lenguas: false,
-          matematicas: false,
-          fisica: false,
-          quimica: false,
-          geografia: false
 
-      }
-      console.log(materias);
-  }
   const addUser = () => {
     var user = {
       name: name,
@@ -31,11 +26,56 @@ const Adduser = () => {
       password: password,
       rol: rol,
       userId: uniqid(),
-      materia: addMateria()
+      lenguas: lenguas,
+      matematicas: matematicas,
+      fisica: fisica,
+      geografia: geografia,
+      quimica: quimica
     };
     console.log(user);
+    
   };
-
+  const SelectMateria = (e) =>{
+    if(e == "Alumno"){
+        <><Form.Check
+            onChange={(e) => {
+                setLenguas(e.target.value);
+            } }
+            type="switch" id="custom-switch"
+            label="Lenguas" value={!lenguas} /><Form.Check
+                onChange={(e) => {
+                    setMatematicas(e.target.value);
+                } }
+                type="switch"
+                id="custom-switch"
+                value={!matematicas}
+                label="Matematicas" /><Form.Check
+                onChange={(e) => {
+                    setFisica(e.target.value);
+                } }
+                type="switch"
+                isValid="true"
+                id="custom-switch"
+                value={!fisica}
+                label="Fisica" /><Form.Check
+                onChange={(e) => {
+                    setQuimica(e.target.value);
+                } }
+                isInvalid="quimica"
+                type="switch" id="custom-switch"
+                value={!quimica} label="Quimica" /><Form.Check
+                //disabled
+                onChange={(e) => {
+                    setGeografia(e.target.value);
+                } }
+                type="switch"
+                value={!geografia}
+                label="Geografia"
+                id="disabled-custom-switch" /></>
+    }else{
+        console.log(rol);
+    };
+}
   return (
     <>
       <div className="container">
@@ -47,30 +87,23 @@ const Adduser = () => {
         <div className="col-sm-6 offset-2">
           <Form>
             <div className="mb-3">
-              <label htmlFor="name" className="form-label">
-                Nombre
-              </label>
+              <label htmlFor="name" className="form-label">Nombre</label>
               <input
+                required="true"
                 type="text"
                 className="form-control"
                 value={name}
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              ></input>
+                onChange={(e) => {setName(e.target.value);}}>
+                </input>
             </div>
             <div className="mb-3">
-              <label htmlFor="lastname" className="form-label">
-                Apellido
-              </label>
+              <label htmlFor="lastname" className="form-label">Apellido</label>
               <input
                 type="text"
                 className="form-control"
                 value={lastname}
-                onChange={(e) => {
-                  setLastname(e.target.value);
-                }}
-              ></input>
+                onChange={(e) => {setLastname(e.target.value);}}>
+                </input>
             </div>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
@@ -78,9 +111,7 @@ const Adduser = () => {
                 type="email"
                 placeholder="Ingresa tu email"
                 onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
+                  setEmail(e.target.value);}}/>
             </Form.Group>
             <div className="mb-3">
               <label htmlFor="tel" className="form-label">
@@ -91,66 +122,28 @@ const Adduser = () => {
                 className="form-control"
                 value={tel}
                 onChange={(e) => {
-                  setTel(e.target.value);
-                }}
-              ></input>
+                  setTel(e.target.value);}} ></input>
             </div>
             <div className="mb-3">
-              <label htmlFor="password" className="form-label">
-                Password
-              </label>
+              <label htmlFor="password" className="form-label"> Password</label>
               <input
                 type="password"
                 className="form-control"
                 value={password}
                 onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              ></input>
+                  setPassword(e.target.value);}} ></input>
             </div>
             <Form.Select
               aria-label="Rol del usuario"
               onChange={(e) => {
                 setRol(e.target.value);
-              }}
-            >
+                SelectMateria(e.target.value)  }}>
               <option>Seleccion el rol del usuario</option>
               <option value="Alumno">Alumno</option>
               <option value="Profesor">Profesor</option>
               <option value="Preceptor">Preceptor</option>
             </Form.Select>
             <br></br>
-            <Form.Check type="switch" id="custom-switch" label="Lenguas" />
-            <Form.Check
-              onChange={(e) => {
-                setMateria(e.target.value);
-              }}
-              type="switch"
-              id="custom-switch"
-              value="matematicas"
-              label="Matematicas"
-            />
-            <Form.Check
-              onChange={(e) => {
-                addMateria(e.target.value);
-              }}
-              type="switch"
-              id="custom-switch"
-              value={'fisica: true'}
-              label="Fisica"
-            />
-            <Form.Check 
-            onChange={(e) => {
-                setMateria(e.target.value);}}
-              type="switch" id="custom-switch" 
-              value="true" label="Quimica" />
-            <Form.Check
-              disabled
-              type="switch"
-              value="geografia"
-              label="disabled switch"
-              id="disabled-custom-switch"
-            />
           </Form>
           <br></br>
           <button onClick={addUser} className="btn btn-success">
