@@ -1,9 +1,11 @@
 *{
     margin: 0;
     padding: 0;
+
   }
   .mar{ 
     margin-top: 10px;
+    height: 100%; 
   }
   
   .flex {
@@ -15,5 +17,7 @@
     height:100vh; 
   }
   
-
-  
+.card-body {
+  color: black;
+  background-color: #7da4a7ff;
+}
