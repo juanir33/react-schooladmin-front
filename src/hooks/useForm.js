@@ -22,7 +22,7 @@ const useForm = (initialState, validate, submit) => {
     })
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = (e) => {
     e.preventDefault();
     const errorsValidate = validate(values);
     setErrors(errorsValidate);
