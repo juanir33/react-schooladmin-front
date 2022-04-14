@@ -7,7 +7,7 @@ import axiosClient from "../../config/axiosClient"
 import { Alert } from "react-bootstrap"
 
 const LoginForm = () => {
-    const login = async(data) => {
+    const loginUser = async(data) => {
         try {
            const response =  await axiosClient.post('/login', data);
            console.log(response.data);
@@ -15,7 +15,7 @@ const LoginForm = () => {
             console.log(error);
         }
     }
-    const {handleKeyUp, handleSubmit, value, errors} = useForm(initialValues, login, validationLogin);
+    const {handleKeyUp, handleSubmit, value, errors} = useForm(initialValues, loginUser, validationLogin);
     {
     }
      return (
