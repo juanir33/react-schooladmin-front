@@ -5,6 +5,7 @@ import { Tables } from "./components/Tables/TableNotasAlumnos";
 import Alumnos from "./pages/Alumnos";
 import Login from "./pages/Login";
 import AddUsers from "./components/AddUsers/AddUsers";
+import List from "./components/List/List";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route path="/alumnos" element={<Alumnos />} />
         <Route path="/login" element={<Login />} />
         <Route path="/AddUsers" element={<AddUsers />} />
+        <Route path="/List" element={<List />} />
       </Routes>
     </Router>
   );

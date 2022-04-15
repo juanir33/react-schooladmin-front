@@ -1,81 +1,51 @@
 import { useState } from "react";
 import uniqid from "uniqid"; // instalamos con npm install uniqid
 import { Form } from "react-bootstrap";
-import './AddUsers.css';
+import "./AddUsers.css";
 
-const Adduser = () => {
-  const [name, setName] = useState("");
-  const [lastname, setLastname] = useState("");
-  const [email, setEmail] = useState("");
-  const [tel, setTel] = useState("");
-  const [password, setPassword] = useState("");
-  const [rol, setRol] = useState("");
-  const [lenguas, setLenguas] = useState('');
-  const [matematicas, setMatematicas] = useState('');
-  const [fisica, setFisica] = useState('');
-  const [geografia, setGeografia] = useState('');
-  const [quimica, setQuimica] = useState('');
+const AddUser = () => {
+  const [form, setForm] = useState({
+    name: "",
+    lastname: "",
+    email: "",
+    tel: "",
+    password: "",
+    rol: "",
+    userId: uniqid(),
+    asistencia: "",
+    curso: "",
+    materias: {
+      lenguas: {
+        cursando: "lenguas",
+        notas: [],
+      },
+      matematicas: {
+        cursando: "matematicas",
+        notas: [],
+      },
+      fisica: {
+        cursando: "fisica",
+        notas: [],
+      },
+      geografia: {
+        cursando: "geografia",
+        notas: [],
+      },
+      quimica: {
+        cursando: "quimica",
+        notas: [],
+      },
+    },
+  });
 
+  function handleForm(e) {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+    console.log(form);
+  }
 
-  const addUser = () => {
-    var user = {
-      name: name,
-      lastname: lastname,
-      email: email,
-      tel: tel,
-      password: password,
-      rol: rol,
-      userId: uniqid(),
-      lenguas: lenguas,
-      matematicas: matematicas,
-      fisica: fisica,
-      geografia: geografia,
-      quimica: quimica
-    };
-    console.log(user);
-    
-  };
-  const SelectMateria = (e) =>{
-    if(e == "Alumno"){
-        <><Form.Check
-            onChange={(e) => {
-                setLenguas(e.target.value);
-            } }
-            type="switch" id="custom-switch"
-            label="Lenguas" value={!lenguas} /><Form.Check
-                onChange={(e) => {
-                    setMatematicas(e.target.value);
-                } }
-                type="switch"
-                id="custom-switch"
-                value={!matematicas}
-                label="Matematicas" /><Form.Check
-                onChange={(e) => {
-                    setFisica(e.target.value);
-                } }
-                type="switch"
-                isValid="true"
-                id="custom-switch"
-                value={!fisica}
-                label="Fisica" /><Form.Check
-                onChange={(e) => {
-                    setQuimica(e.target.value);
-                } }
-                isInvalid="quimica"
-                type="switch" id="custom-switch"
-                value={!quimica} label="Quimica" /><Form.Check
-                //disabled
-                onChange={(e) => {
-                    setGeografia(e.target.value);
-                } }
-                type="switch"
-                value={!geografia}
-                label="Geografia"
-                id="disabled-custom-switch" /></>
-    }else{
-        console.log(rol);
-    };
-}
   return (
     <>
       <div className="container">
@@ -86,67 +56,110 @@ const Adduser = () => {
       <div className="row">
         <div className="col-sm-6 offset-2">
           <Form>
-            <div className="mb-3">
-              <label htmlFor="name" className="form-label">Nombre</label>
-              <input
-                required="true"
-                type="text"
-                className="form-control"
-                value={name}
-                onChange={(e) => {setName(e.target.value);}}>
-                </input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="lastname" className="form-label">Apellido</label>
-              <input
-                type="text"
-                className="form-control"
-                value={lastname}
-                onChange={(e) => {setLastname(e.target.value);}}>
-                </input>
-            </div>
+            <div className="mb-3"></div>
+            <Form.Group className="mb-3" controlId="name">
+              <Form.Label>Nombre</Form.Label>
+              <Form.Control
+                type="name"
+                placeholder="Ingresa tu nombre"
+                name="name"
+                onkeyUp={(e) => handleForm(e)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="lastName">
+              <Form.Label>Apellido</Form.Label>
+              <Form.Control
+                type="lastname"
+                placeholder="Ingresa tu apellido"
+                name="lastname"
+                onkeyUp={(e) => handleForm(e)}
+              />
+            </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
                 placeholder="Ingresa tu email"
-                onChange={(e) => {
-                  setEmail(e.target.value);}}/>
+                name="email"
+                onkeyUp={(e) => handleForm(e)}
+              />
             </Form.Group>
-            <div className="mb-3">
-              <label htmlFor="tel" className="form-label">
-                Telefono
-              </label>
-              <input
-                type="text"
-                className="form-control"
-                value={tel}
-                onChange={(e) => {
-                  setTel(e.target.value);}} ></input>
-            </div>
-            <div className="mb-3">
-              <label htmlFor="password" className="form-label"> Password</label>
-              <input
+            <Form.Group className="mb-3" controlId="Phone">
+              <Form.Label>Telefono</Form.Label>
+              <Form.Control
+                type="phone"
+                placeholder="Ingresa tu Telefono"
+                name="tel"
+                onkeyUp={(e) => handleForm(e)}
+              />
+            </Form.Group>
+            <Form.Group className="mb-3" controlId="password">
+              <Form.Label>Password</Form.Label>
+              <Form.Control
                 type="password"
-                className="form-control"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);}} ></input>
-            </div>
+                placeholder="Ingresa tu password"
+                name="password"
+                onkeyUp={(e) => handleForm(e)}
+              />
+            </Form.Group>
             <Form.Select
               aria-label="Rol del usuario"
-              onChange={(e) => {
-                setRol(e.target.value);
-                SelectMateria(e.target.value)  }}>
+              name="rol"
+              onChange={(e) => handleForm(e)}
+            >
               <option>Seleccion el rol del usuario</option>
               <option value="Alumno">Alumno</option>
               <option value="Profesor">Profesor</option>
               <option value="Preceptor">Preceptor</option>
             </Form.Select>
             <br></br>
+            <Form.Check
+              disabled
+              name="lenguas"
+              onkeyUp={(e) => handleForm(e)}
+              type="switch"
+              id="custom-switch"
+              label="Lenguas"
+              value={"lenguas"}
+            />
+            <Form.Check
+              name="matematicas"
+              onkeyUp={(e) => handleForm(e)}
+              type="switch"
+              id="custom-switch"
+              value={!"matematicas"}
+              label="Matematicas"
+            />
+            <Form.Check
+              name="fisica"
+              onkeyUp={(e) => handleForm(e)}
+              type="switch"
+              isValid="true"
+              id="custom-switch"
+              value={!"fisica"}
+              label="Fisica"
+            />
+            <Form.Check
+              name="quimica"
+              onkeyUp={(e) => handleForm(e)}
+              isInvalid="quimica"
+              type="switch"
+              id="custom-switch"
+              value={!"quimica"}
+              label="Quimica"
+            />
+            <Form.Check
+              //disabled
+              name="geografia"
+              onkeyUp={(e) => handleForm(e)}
+              type="switch"
+              value={!"geografia"}
+              label="Geografia"
+              id="disabled-custom-switch"
+            />
           </Form>
           <br></br>
-          <button onClick={addUser} className="btn btn-success">
+          <button onClick={AddUser} className="btn btn-success">
             Guardar
           </button>
         </div>
@@ -155,4 +168,4 @@ const Adduser = () => {
   );
 };
 
-export default Adduser;
+export default AddUser;
