@@ -22,6 +22,11 @@ let user = {name:'juan', rol: profesor}
 
 
 const Sidebar = () => {
+
+  const handleLogOut = ()=>{
+    localStorage.clear()
+  }
+
   const links = sideLs.map((link, index) =>  {
     return (
       <NavLink
@@ -59,7 +64,7 @@ const Sidebar = () => {
 
         <CDBSidebarFooter>
           <div>
-            <NavLink exact to="/login" className="foot">
+            <NavLink exact to="/login" className="foot" onClick={handleLogOut}>
               <CDBSidebarMenuItem className="item" icon="sign-out-alt">
                 Logout
               </CDBSidebarMenuItem>
