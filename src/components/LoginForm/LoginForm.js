@@ -27,7 +27,7 @@ const LoginForm = () => {
                     <div className="row cards">
                         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                             <div className="card border-0 shadow rounded-3 my-5">
-                                <div className="card-body p-4 p-sm-5">
+                                <div className="card-body-login p-4 p-sm-5">
                                     <h5 className="card-title text-center mb-5 fw-light fs-5"><strong>INICIAR SESION</strong></h5>
                                     <form onSubmit={handleSubmit}>
                                         <div className="form-floating mb-3">
