@@ -1,10 +1,10 @@
 import { Form } from "react-bootstrap"
 import { Link } from "react-router-dom"
-import { initialValues } from "../../constants/index"
 import { validationLogin } from "../../helpers/validations"
 import useForm from "../../hooks/useForm"
 import axiosClient from "../../config/axiosClient"
 import { Alert } from "react-bootstrap"
+import { values_login } from "../../constants/index"
 
 const LoginForm = () => {
     const loginUser = async(data) => {
@@ -15,7 +15,7 @@ const LoginForm = () => {
             console.log(error);
         }
     }
-    const {handleKeyUp, handleSubmit, value, errors} = useForm(initialValues, loginUser, validationLogin);
+    const {handleKeyUp, handleSubmit, value, errors} = useForm(values_login, loginUser, validationLogin);
     {
     }
      return (

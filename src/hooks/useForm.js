@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-const useForm = (initialState, validate, submit) => {
+const useForm = (initialState,submit, validate ) => {
   
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
@@ -24,9 +24,12 @@ const useForm = (initialState, validate, submit) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const errorsValidate = validate(values);
-    setErrors(errorsValidate);
-    setSubmitting(true)
+    if(validate){
+      setErrors(validate(values));
+    }else{
+      setErrors({});
+    }
+    setSubmitting(true);
   }
 
   return {
