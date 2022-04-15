@@ -24,11 +24,24 @@ code {
   color: var(--platinum) !important;
   border: none !important;
 }
+.btns-light{
+  background-color: var(--platinum) !important;
+  color: var(--skobeloff) !important;
+  border: none !important;
+}
+.btns-light:hover{
+  background-color: var(--skobeloff) !important;
+  color: var(--platinum) !important;
+  border: none !important;
+}
 .btns:hover{
   background-color: var(--platinum) !important;
   color: var(--skobeloff) !important;
   border: none !important;
 }
 .btns:focus{
+  box-shadow: none !important;
+}
+.btns-light:focus{
   box-shadow: none !important;
 }

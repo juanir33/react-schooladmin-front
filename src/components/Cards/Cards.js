@@ -9,13 +9,13 @@ function Cards({ imagen, titulo, texto, boton }) {
     
   return (
     <Card className="m-1" style={{ width: "18rem" }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" />
       <Card.Body>
-        <Card.Title>{'titulo'}</Card.Title>
+        <Card.Title>{titulo}</Card.Title>
         <Card.Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis, fuga tempore! Maiores unde, voluptate, esse et hic harum assumenda laborum quia nulla commodi iusto iste alias molestias quidem, quasi eaque.
+          {texto}
         </Card.Text>
-        <Button variant="primary">texto</Button>
+        <Button variant="primary">{boton}</Button>
       </Card.Body>
     </Card>
   );

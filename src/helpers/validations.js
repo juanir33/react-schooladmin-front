@@ -10,7 +10,7 @@ export const validationLogin = values => {
 
   if (!values.password) {
     errors.password = 'La contraseña es obligatoria'
-  } else if (values.password.length < 8) {
+  } else if (values.password.length < 3) {
     errors.password = 'La contraseña debe tener como mínimo 8 caracteres'
   } else if (values.password.length > 30) {
     errors.password = 'La contraseña no debe poseer más de 30 caracteres'

@@ -1,18 +1,23 @@
 import React from 'react'
+import Cards from '../components/Cards/Cards'
 import Dashboard from '../components/Dashboard/Dashboard'
 import NavBar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
-import { Tables } from '../components/Tables/Table'
+import TablesMaterias from '../components/Tables/TableMaterias'
+
 
 function Alumnos() {
+
   return (
     
 
-    <div className="d-flex justify-content-center align-item-center h-75">
-        <Dashboard children={<Tables/>}/>
+    <div className="container w-75 d-flex justify-content-center">
         
-        
-    </div>
+        <Cards titulo='Materia' texto='notas varias notas' boton='imprimir' />
+        <Cards titulo='Materia' texto='notas varias notas' boton='imprimir' />
+        <Cards titulo='Materia' texto='notas varias notas' boton='imprimir' />
+      </div>  
+    
   )
 }
 

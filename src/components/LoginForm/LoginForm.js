@@ -1,20 +1,23 @@
 import { Form } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { validationLogin } from "../../helpers/validations"
 import useForm from "../../hooks/useForm"
 import axiosClient from "../../config/axiosClient"
-import { Alert } from "react-bootstrap"
 import { values_login } from "../../constants/index"
+import Alert from "@mui/material/Alert"
+import { useContext, useEffect } from "react"
+import { UserContext } from "../../context/UserContext"
 
 const LoginForm = () => {
-    const loginUser = async(data) => {
-        try {
-           const response =  await axiosClient.post('/login', data);
-           console.log(response.data);
-        } catch (error) {
-            console.log(error);
+
+    const {user, loginUser, auth} = useContext(UserContext);
+    const navigate = useNavigate();
+    useEffect(() =>{
+        if(auth){
+            navigate('/')
         }
-    }
+    },[auth])
+
     const {handleKeyUp, handleSubmit, value, errors} = useForm(values_login, loginUser, validationLogin);
     {
     }
@@ -43,7 +46,7 @@ const LoginForm = () => {
                                         <div className="d-grid">
                                             <button className="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Entrar</button>
                                         {Object.keys(errors).length===0?null:
-                                        Object.values(errors).map((error,index)=><Alert key={index}>{error}</Alert>)}
+                                        Object.values(errors).map((error,index)=><Alert severity="error" className="mt-3" key={index}>{error}</Alert>)}
                                         </div>
                                         <hr className="my-4"/>
                                             <div className="d-grid mb-2">
@@ -54,7 +57,7 @@ const LoginForm = () => {
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div>  
                     </div>
                 </div>
         </div>
