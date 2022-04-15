@@ -1,0 +1,57 @@
+.profile-card
+{
+    background-color: var(--cadet-blue);
+    color: white;
+    border-bottom-left-radius: 14px ;
+    border-top-right-radius: 14px ;
+}
+.profile-card:hover{
+    transform: translateY(6px);
+    box-shadow: 6px 6px 9px -1px rgba(45,127,131,0.8);
+    -webkit-box-shadow: 6px 6px 9px -1px rgba(45,127,131,0.8);
+    -moz-box-shadow: 6px 6px 9px -1px rgba(45,127,131,0.8);
+}
+.icon{
+    color: var(--skobeloff)
+}
+.tool {
+    position: relative;
+    display: inline-block;
+    background-color: var(--ash-gray);
+    color: white;
+    /* border-bottom: 1px solid var(--skobeloff)!important; */
+    border-bottom-left-radius: 14px ;
+    
+    border-top-right-radius: 14px;
+    margin-bottom: 1px;
+}
+ .tiptext {
+    visibility: hidden;
+    width: 120px;
+    background-color: var(--skobeloff);
+    color: var(--platinum);
+    text-align: center;
+    border-radius: 3px;
+    padding: 4px;
+    position: absolute;
+    z-index: 1;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+    margin-left: -60px;
+    bottom: 150%;
+    left: 50%;
+}
+
+
+.tool:hover .tiptext {
+    visibility: visible;
+    
+
+}
+.tool:hover  {
+   
+    transform: translateX(3px);
+    border-bottom-right-radius: 14px;
+    border-top-left-radius: 14px;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0;
+}
