@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Tables } from "../Tables/TableNotasAlumnos";
+
 import NavBar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import Cards from "../Cards/Cards";
@@ -22,8 +22,8 @@ const Dashboard = ({children}) => {
         <NavBar />
         <div className="main-content d-flex w-100 justify-content-center flex-wrap">
          {children} 
-        <ProfileCard/>
-        <ProfileCard/>
+        
+        
         
           
         </div>

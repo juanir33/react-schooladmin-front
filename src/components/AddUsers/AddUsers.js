@@ -17,7 +17,7 @@ const AddUser = () => {
     materias: {
       lenguas: {
         cursando: "lenguas",
-        notas: [],
+        notas: [6, 8, 10],
       },
       matematicas: {
         cursando: "matematicas",
@@ -54,7 +54,7 @@ const AddUser = () => {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-6 offset-2">
+        <div className="col-m-10">
           <Form>
             <div className="mb-3"></div>
             <Form.Group className="mb-3" controlId="name">
@@ -63,7 +63,7 @@ const AddUser = () => {
                 type="name"
                 placeholder="Ingresa tu nombre"
                 name="name"
-                onkeyUp={(e) => handleForm(e)}
+                onKeyUp={(e) => handleForm(e)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="lastName">
@@ -72,7 +72,7 @@ const AddUser = () => {
                 type="lastname"
                 placeholder="Ingresa tu apellido"
                 name="lastname"
-                onkeyUp={(e) => handleForm(e)}
+                onKeyUp={(e) => handleForm(e)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -81,7 +81,7 @@ const AddUser = () => {
                 type="email"
                 placeholder="Ingresa tu email"
                 name="email"
-                onkeyUp={(e) => handleForm(e)}
+                onKeyUp={(e) => handleForm(e)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="Phone">
@@ -90,7 +90,8 @@ const AddUser = () => {
                 type="phone"
                 placeholder="Ingresa tu Telefono"
                 name="tel"
-                onkeyUp={(e) => handleForm(e)}
+                max="10"
+                onKeyUp={(e) => handleForm(e)}
               />
             </Form.Group>
             <Form.Group className="mb-3" controlId="password">
@@ -99,7 +100,7 @@ const AddUser = () => {
                 type="password"
                 placeholder="Ingresa tu password"
                 name="password"
-                onkeyUp={(e) => handleForm(e)}
+                onKeyUp={(e) => handleForm(e)}
               />
             </Form.Group>
             <Form.Select
@@ -116,7 +117,7 @@ const AddUser = () => {
             <Form.Check
               disabled
               name="lenguas"
-              onkeyUp={(e) => handleForm(e)}
+              onKeyUp={(e) => handleForm(e)}
               type="switch"
               id="custom-switch"
               label="Lenguas"
@@ -124,7 +125,7 @@ const AddUser = () => {
             />
             <Form.Check
               name="matematicas"
-              onkeyUp={(e) => handleForm(e)}
+              onKeyUp={(e) => handleForm(e)}
               type="switch"
               id="custom-switch"
               value={!"matematicas"}
@@ -132,7 +133,7 @@ const AddUser = () => {
             />
             <Form.Check
               name="fisica"
-              onkeyUp={(e) => handleForm(e)}
+              onKeyUp={(e) => handleForm(e)}
               type="switch"
               isValid="true"
               id="custom-switch"
@@ -141,7 +142,7 @@ const AddUser = () => {
             />
             <Form.Check
               name="quimica"
-              onkeyUp={(e) => handleForm(e)}
+              onKeyUp={(e) => handleForm(e)}
               isInvalid="quimica"
               type="switch"
               id="custom-switch"
@@ -151,7 +152,7 @@ const AddUser = () => {
             <Form.Check
               //disabled
               name="geografia"
-              onkeyUp={(e) => handleForm(e)}
+              onKeyUp={(e) => handleForm(e)}
               type="switch"
               value={!"geografia"}
               label="Geografia"
