@@ -3,7 +3,7 @@ import Dashboard from '../components/Dashboard/Dashboard'
 import NavBar from '../components/Navbar/Navbar'
 import Sidebar from '../components/Sidebar/Sidebar'
 import TablesMaterias from '../components/Tables/TableMaterias'
-import { Tables } from '../components/Tables/TableNotasAlumnos'
+
 
 function Alumnos() {
   return (
