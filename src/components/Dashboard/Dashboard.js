@@ -21,8 +21,8 @@ const Dashboard = ({children}) => {
         <NavBar />
         <div className="main-content d-flex w-100 justify-content-center flex-wrap">
          {children} 
-        <ProfileCard/>
-        <ProfileCard/>
+        
+        
         
           
         </div>

@@ -74,3 +74,5 @@ notas:[{
 
 localStorage.setItem('users' , JSON.stringify(users)  );
 localStorage.setItem('notas' , JSON.stringify(notas)  )
+
+export const user = localStorage.getItem('users')
