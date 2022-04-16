@@ -28,7 +28,7 @@ const AddMaterias= () => {
     },
   ];
 
-  const [form, setForm] = useState("nada")
+  const [form, setForm] = useState("nada");
 
   const handleForm= (e) => {
     setForm({
@@ -98,9 +98,9 @@ const AddMaterias= () => {
       </div>
     );
   };
-  
+  MateriasCard();
 
 }
 
 
-export default AddMaterias();
+export default AddMaterias;

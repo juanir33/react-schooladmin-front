@@ -11,6 +11,7 @@ import ProfileCard from './components/ProfileCard/ProfileCard';
 import AddUsers from './components/AddUsers/AddUsers';
 import List from './components/List/List';
 import AddMaterias from './components/Cards/MateriasCards';
+import MateriasCards from './components/Cards/MateriasCards';
 
 
 function App() {
