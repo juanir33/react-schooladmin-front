@@ -5,6 +5,8 @@ import { Link, useLocation } from "react-router-dom";
 
 const NavBar = () => {
   const { pathname } = useLocation();
+  //const user = localStorage.getItem('user');
+  const user = "Usuario Logeado";
 
   return (
     <div className="sticky-top">
@@ -36,7 +38,7 @@ const NavBar = () => {
             </Button>
             <Navbar.Text>
               <Link to="/profile" className="nav-link " id="user-a">
-                Pablo Sangenis
+                {user}
               </Link>
             </Navbar.Text>
           </Navbar.Collapse>}

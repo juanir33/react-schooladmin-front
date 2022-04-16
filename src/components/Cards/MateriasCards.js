@@ -32,12 +32,11 @@ const ListaMaterias= () => {
 
   const listMaterias = materias.map((materia) => {
     return (
-      <Card style={{ width: "15rem" }} className="profile-card m-3">
+      <Card style={{ width: "14rem" }} className="profile-card m-3">
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>{materia.nombre}</Card.Title>
-          <div
-            className="d-flex w-100 justify-content-center">
+          <div className="d-flex w-100 justify-content-center">
             <Card.Text>{materia.abreviatura}</Card.Text>
           </div>
         </Card.Body>
@@ -60,7 +59,7 @@ const ListaMaterias= () => {
   };
   return (
     <div>
-      <Card style={{ width: "15rem" }} className="profile-card m-3">
+      <Card style={{ width: "14rem" }} className="profile-card m-3">
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>Nueva Materia</Card.Title>
@@ -92,9 +91,6 @@ const ListaMaterias= () => {
       <div className="d-flex mt-4">{listMaterias}</div>
     </div>
   );
-  
-
 }
-
 
 export default ListaMaterias;
