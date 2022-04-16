@@ -1,35 +1,43 @@
-import './MateriaCards.css'
+import "./MateriaCards.css";
 import { Button, Card, Form, ListGroup, ListGroupItem } from "react-bootstrap";
-import {
-  RiCalendarTodoFill,
- 
-} from "react-icons/ri";
+import { RiCalendarTodoFill } from "react-icons/ri";
+import { useState } from "react";
 
 
+const ListaMaterias= () => {
+  
+  const [nombre, setNombre] = useState("")
+  const [codigo, setCodigo] = useState("")
 
-const materias = [{
-    nombre: 'Matemitica',
-    abreviatura: 'MAT1',
-    fecha: '23/02/2022'
-},{
-  nombre: 'Historia',
-  abreviatura: 'HIS1',
-  fecha: '23/02/2022'
-},{
-  nombre: 'Lengua',
-  abreviatura: 'LEN1',
-  fecha: '23/02/2022'
-}]
-const listMaterias = materias.map((materia) => {
+  const addMaterias = () => {   
+    materias.push({
+      nombre: nombre, 
+      codigo: codigo
+    });
+    console.log(materias);
+  }
+  let materias = [
+    {
+      nombre: "Matemitica",
+      abreviatura: "MAT1",
+      fecha: "23/02/2022",
+    },
+    {
+      nombre: "Historia",
+      abreviatura: "HIS1",
+      fecha: "23/02/2022",
+    }
+  ];
+
+
+  const listMaterias = materias.map((materia) => {
     return (
-      <Card style={{ width: "18rem" }} className="profile-card m-3" >
+      <Card style={{ width: "15rem" }} className="profile-card m-3">
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>{materia.nombre}</Card.Title>
           <div
-            className="d-flex w-100 justify-content-center
-      "
-          >
+            className="d-flex w-100 justify-content-center">
             <Card.Text>{materia.abreviatura}</Card.Text>
           </div>
         </Card.Body>
@@ -38,50 +46,55 @@ const listMaterias = materias.map((materia) => {
             <RiCalendarTodoFill className="mx-2 icon " />{" "}
             <span className="tiptext">Creada</span> {materia.fecha}
           </ListGroupItem>
-          
         </ListGroup>
         <Card.Body className="d-flex justify-content-between">
-          <Button className='btns-light'>Editar</Button>
-          <Button className='btns-light' >Eliminar</Button>
+          <Button className="btns-light">Editar</Button>
+          <Button className="btns-light">Eliminar</Button>
         </Card.Body>
       </Card>
     );
   });
-
-
-const MateriasCard = () => {
-   
-
   
-
+  const materiasCard = () => {
+    
+  };
   return (
-   
     <div>
-        <Card style={{ width: "18rem" }} className="profile-card m-3" >
+      <Card style={{ width: "15rem" }} className="profile-card m-3">
         <Card.Img variant="top" src="" />
         <Card.Body>
-          <Card.Title>CREAR MATERIA</Card.Title>
-          
+          <Card.Title>Nueva Materia</Card.Title>
         </Card.Body>
         <ListGroup className="list-group-flush ">
           <ListGroupItem className="tool">
-            <Form.Control type="text" name="nombre" placeholder="Nombre de materia"></Form.Control>
+            <Form.Control
+              type="text"
+              name="nombre"
+              placeholder="Nombre de materia"
+              onKeyUp={(e) => setNombre(e.target.value)}
+            ></Form.Control>
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <Form.Control type="text" name="abreviatura" placeholder="Codigo de materia"></Form.Control>
+            <Form.Control
+              type="text"
+              name="abreviatura"
+              placeholder="Codigo de materia"
+              onKeyUp={(e)=> setCodigo(e.target.value)}
+            ></Form.Control>
           </ListGroupItem>
-          
         </ListGroup>
         <Card.Body className="d-flex justify-content-center">
-          <Button className='btns-light'>Crear</Button>
-          
+          <Button onClick={addMaterias} className="btns-light">Crear</Button>
         </Card.Body>
       </Card>
-        <hr></hr>
-       <div className='d-flex mt-5'>
-      {listMaterias}
-      </div>
-    
-  </div>)}
+      
+      <hr></hr>
+      <div className="d-flex mt-4">{listMaterias}</div>
+    </div>
+  );
+  
 
-export default MateriasCard;
+}
+
+
+export default ListaMaterias;
