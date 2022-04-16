@@ -23,10 +23,10 @@ function App() {
       <Routes>
        
         
-         <Route path="/" element={<Dashboard children={<ProfileCard/>} />}/>
+         <Route path="/home" element={<Dashboard children={<ProfileCard/>} />}/>
          <Route path="/profesores" element={<Dashboard children={<Profesores/>} />} />  
          <Route path="/alumnos" element={<Dashboard children={<Alumnos/>} />} />
-         <Route path="/login" element={<Login/>} />
+         <Route path="/" element={<Login/>} />
          <Route path="/register" element={<Register/>} />
          <Route path="/notas" element={<Dashboard children={<Profesores/>} />} />
          <Route path="/materias" element={<Dashboard children={<MateriasCards/>} />} />

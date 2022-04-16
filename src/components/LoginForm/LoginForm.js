@@ -14,7 +14,7 @@ const LoginForm = () => {
     const navigate = useNavigate();
     useEffect(() =>{
         if(auth){
-            navigate('/')
+            navigate('/home')
         }
     },[auth])
 

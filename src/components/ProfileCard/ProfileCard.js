@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import {
   RiCalendarTodoFill,
@@ -14,10 +14,38 @@ import {
   FaMapMarked,
 } from "react-icons/fa";
 import "./ProfileCard.css";
-import { user } from "../../helpers/data/users";
+import { UserContext } from "../../context/UserContext";
+
+import axiosClient from "../../config/axiosClient";
+import * as moment from 'moment'
+
 const ProfileCard = () => {
-  const usuarios = JSON.parse(user);
-  console.log(usuarios);
+  const [users, setUsers] = useState([])
+  const {authen} = useContext(UserContext)
+  authen();
+  
+
+  useEffect(()=>{
+    const getUsers = async () => {
+      
+      const {data} = await axiosClient.get('users/list');
+       setUsers(data.users)
+    }
+    try {
+      getUsers()
+    } catch (error) {
+      console.log(error);
+      
+    };;
+    
+    
+
+  }
+    
+  ,[])
+  
+  console.log(users);
+  const usuarios = users;
 
   return usuarios.map((usuario) => {
     return (
@@ -29,16 +57,17 @@ const ProfileCard = () => {
             className="d-flex w-100 justify-content-center
       "
           >
-            <Card.Text>{usuario.profile.nombre + ' ' + usuario.profile.apellido}</Card.Text>
+            {/* <Card.Text>{usuario.profile.apellido + ' ' + usuario.profile.nombre}</Card.Text> */}
+            
           </div>
         </Card.Body>
         <ListGroup className="list-group-flush ">
           <ListGroupItem className="tool">
             <RiCalendarTodoFill className="mx-2 icon " />{" "}
-            <span className="tiptext">Fecha de Ingreso</span> 20/03/2013
+            <span className="tiptext">Fecha de Ingreso</span> {moment(usuario.createdAt).format( "DD-MM-YYYY")}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaWhatsapp className="mx-2 icon" /> {usuario.profile.telefonos}{" "}
+            <FaWhatsapp className="mx-2 icon" /> {}{" "}
             <span className="tiptext">Telefono personal</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
@@ -46,7 +75,7 @@ const ProfileCard = () => {
             <span className="tiptext">Mail personal</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaIdBadge className="mx-2 icon" /> {usuario.id}{" "}
+            <FaIdBadge className="mx-2 icon" /> {usuario._id}{" "}
             <span className="tiptext">Id</span>{" "}
           </ListGroupItem>
           {/* <ListGroupItem className="tool">

@@ -1,7 +1,7 @@
 import sideL from "../helpers/sideLinkObject";
 
 const sideLs = [
-  new sideL("home", "/", "Panel"),
+  new sideL("home", "/home", "Panel"),
   new sideL("users", "/alumnos", "Alumnos"),
   new sideL("user-tie", "/profesores", "Profesores"),
   new sideL("chalkboard", "/materias", "Materias"),

@@ -21,10 +21,26 @@ const UserProvider = ({children}) => {
                 localStorage.removeItem('token');
             }
         }
+    };
+
+    const authen =  ()=>{
+
+        const token = localStorage.getItem('token')
+        console.log(token);
+        if(token){
+            axiosClient.defaults.headers.common['token']= token
+
+        }else{
+            console.log('no hay token');
+        }
+
+    
     }
 
+    
+
     return(
-        <UserContext.Provider value={{user, setUser, loginUser, auth}}>
+        <UserContext.Provider value={{user, setUser, loginUser, auth, authen }}>
             {children}
         </UserContext.Provider>
     )

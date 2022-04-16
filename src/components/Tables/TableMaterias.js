@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Col, Form, FormControl, Table } from "react-bootstrap";
 import { ModalContext } from "../../context/ModalContext";
 import { sorted } from "../../helpers/alumnosSort";
@@ -8,20 +8,15 @@ import ModalNotas from "../Modals/ModalNotas";
 import ModalNotasEditar from "../Modals/ModalNotasEditar";
 import "./TableMaterias.css";
 
-const getUsers = () => {
-  const response = localStorage.getItem("users");
-  const users = JSON.parse(response);
-  return users;
-};
 
-const alumnos = getUsers()
-  .sort(sorted)
-  .filter((user) => user.rol === "alumno");
+
 
 // queda conseguir que aparezca el formulario para editar la nota cuando esta vacio el valor de la misma y muestre cuando hay una creada
-
+const alumnos = []
 export const TablesMaterias = () => {
+  
   const { handleShowN, handleShowE } = useContext(ModalContext);
+   
 
   const listafiltrada = alumnos.map((fil, index) => {
     return (
