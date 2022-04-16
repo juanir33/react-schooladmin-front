@@ -3,9 +3,11 @@ import { Navigate } from "react-router-dom";
 import {UserContext} from "./../context/UserContext"
 
 const PrivateRoute = ({children}) => {
-    const {auth} = useContext(UserContext);
+    const {getAuth, auth} = useContext(UserContext);
+    getAuth();
+    console.log(auth);
     return(
-        auth? children : <Navigate to='/login'/>
+        auth? children : <Navigate to='/' replace />
     );
     }
 

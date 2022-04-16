@@ -22,7 +22,26 @@ const UserProvider = ({children}) => {
             }
         }
     };
+    const getAuth = async () =>{
+        const toke = localStorage.getItem('token')
+        console.log(token);
+        if(toke){      
+             
+        
+        try {
+            setAuth(true)
+        } catch (error) {
+            console.log(error);
+            setAuth(false);
+            if(localStorage.getItem('token')){
+                localStorage.removeItem('token');
+            }
+            
+        }
 
+
+
+    }};
     const authen =  ()=>{
 
         const token = localStorage.getItem('token')
@@ -31,7 +50,7 @@ const UserProvider = ({children}) => {
             axiosClient.defaults.headers.common['token']= token
 
         }else{
-            console.log('no hay token');
+            delete axiosClient.defaults.headers.common['token']
         }
 
     
@@ -40,7 +59,7 @@ const UserProvider = ({children}) => {
     
 
     return(
-        <UserContext.Provider value={{user, setUser, loginUser, auth, authen }}>
+        <UserContext.Provider value={{user, setUser, loginUser, auth, authen, getAuth}}>
             {children}
         </UserContext.Provider>
     )
