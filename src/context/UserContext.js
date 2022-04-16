@@ -1,5 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import axiosClient from "../config/axiosClient";
+import jwt_decode from 'jwt-decode'
 
 export const UserContext = createContext();
 
@@ -7,6 +8,10 @@ const UserProvider = ({children}) => {
     const[user, setUser] = useState(null);
     const[auth, setAuth] = useState(false);
     const[token, setToken] = useState(null);
+    
+    
+
+
 
     const loginUser = async(values) => {
         try {
@@ -54,12 +59,33 @@ const UserProvider = ({children}) => {
         }
 
     
-    }
+    };
 
     
 
+        
+    const decoder = () =>{
+        const data  = localStorage.getItem('token');
+        const logged = jwt_decode(data)
+        return logged
+        };
+        
+
+        
+    
+    
+        
+
+
+
+
+    
+    
+
+    
+    
     return(
-        <UserContext.Provider value={{user, setUser, loginUser, auth, authen, getAuth}}>
+        <UserContext.Provider value={{user, setUser, loginUser, auth, authen, getAuth,  decoder }}>
             {children}
         </UserContext.Provider>
     )

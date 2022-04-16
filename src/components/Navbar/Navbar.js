@@ -2,10 +2,15 @@ import { Navbar, Container, Button } from "react-bootstrap";
 import "./Navbar.css";
 import { MdEmail, MdNotificationsActive } from "react-icons/md";
 import { Link, useLocation } from "react-router-dom";
+import {useContext, useEffect} from 'react'
+import { UserContext } from "../../context/UserContext";
+import jwt_decode from 'jwt-decode'
 
 const NavBar = () => {
   const { pathname } = useLocation();
-
+  const {decoder} = useContext(UserContext)
+  const log = decoder();
+  
   return (
     <div className="sticky-top">
       <Navbar className="nav-head d-flex">
@@ -36,7 +41,7 @@ const NavBar = () => {
             </Button>
             <Navbar.Text>
               <Link to="/profile" className="nav-link " id="user-a">
-                Pablo Sangenis
+                {log.profile.apellido +' '+ log.profile.nombre}
               </Link>
             </Navbar.Text>
           </Navbar.Collapse>}
