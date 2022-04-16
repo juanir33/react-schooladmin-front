@@ -4,8 +4,19 @@ import { RiCalendarTodoFill } from "react-icons/ri";
 import { useState } from "react";
 
 
-const AddMaterias= () => {
-  const materias = [
+const ListaMaterias= () => {
+  
+  const [nombre, setNombre] = useState("")
+  const [codigo, setCodigo] = useState("")
+
+  const addMaterias = () => {   
+    materias.push({
+      nombre: nombre, 
+      codigo: codigo
+    });
+    console.log(materias);
+  }
+  let materias = [
     {
       nombre: "Matemitica",
       abreviatura: "MAT1",
@@ -15,32 +26,13 @@ const AddMaterias= () => {
       nombre: "Historia",
       abreviatura: "HIS1",
       fecha: "23/02/2022",
-    },
-    {
-      nombre: "Lengua",
-      abreviatura: "LEN1",
-      fecha: "23/02/2022",
-    },
-    {
-      nombre: "Geografia",
-      abreviatura: "GEO1",
-      fecha: "15/04/2022",
-    },
+    }
   ];
 
-  const [form, setForm] = useState("nada");
 
-  const handleForm= (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-    console.log(form);
-  }
-  
   const listMaterias = materias.map((materia) => {
     return (
-      <Card style={{ width: "18rem" }} className="profile-card m-3">
+      <Card style={{ width: "15rem" }} className="profile-card m-3">
         <Card.Img variant="top" src="" />
         <Card.Body>
           <Card.Title>{materia.nombre}</Card.Title>
@@ -63,44 +55,46 @@ const AddMaterias= () => {
     );
   });
   
-  const MateriasCard = () => {
-    return (
-      <div>
-        <Card style={{ width: "18rem" }} className="profile-card m-3">
-          <Card.Img variant="top" src="" />
-          <Card.Body>
-            <Card.Title>CREAR MATERIA</Card.Title>
-          </Card.Body>
-          <ListGroup className="list-group-flush ">
-            <ListGroupItem className="tool">
-              <Form.Control
-                type="text"
-                name="nombre"
-                placeholder="Nombre de materia"
-                onKeyUp={(e)=>handleForm(e)}
-              ></Form.Control>
-            </ListGroupItem>
-            <ListGroupItem className="tool">
-              <Form.Control
-                type="text"
-                name="abreviatura"
-                placeholder="Codigo de materia"
-                onKeyUp={(e)=>handleForm(e)}
-              ></Form.Control>
-            </ListGroupItem>
-          </ListGroup>
-          <Card.Body className="d-flex justify-content-center">
-            <Button onClick={AddMaterias()} className="btns-light">Crear</Button>
-          </Card.Body>
-        </Card>
-        <hr></hr>
-        <div className="d-flex mt-5">{listMaterias}</div>
-      </div>
-    );
+  const materiasCard = () => {
+    
   };
-  MateriasCard();
+  return (
+    <div>
+      <Card style={{ width: "15rem" }} className="profile-card m-3">
+        <Card.Img variant="top" src="" />
+        <Card.Body>
+          <Card.Title>Nueva Materia</Card.Title>
+        </Card.Body>
+        <ListGroup className="list-group-flush ">
+          <ListGroupItem className="tool">
+            <Form.Control
+              type="text"
+              name="nombre"
+              placeholder="Nombre de materia"
+              onKeyUp={(e) => setNombre(e.target.value)}
+            ></Form.Control>
+          </ListGroupItem>
+          <ListGroupItem className="tool">
+            <Form.Control
+              type="text"
+              name="abreviatura"
+              placeholder="Codigo de materia"
+              onKeyUp={(e)=> setCodigo(e.target.value)}
+            ></Form.Control>
+          </ListGroupItem>
+        </ListGroup>
+        <Card.Body className="d-flex justify-content-center">
+          <Button onClick={addMaterias} className="btns-light">Crear</Button>
+        </Card.Body>
+      </Card>
+      
+      <hr></hr>
+      <div className="d-flex mt-4">{listMaterias}</div>
+    </div>
+  );
+  
 
 }
 
 
-export default AddMaterias;
+export default ListaMaterias;

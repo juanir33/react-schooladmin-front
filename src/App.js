@@ -10,8 +10,7 @@ import Profesores from './pages/Profesores';
 import ProfileCard from './components/ProfileCard/ProfileCard';
 import AddUsers from './components/AddUsers/AddUsers';
 import List from './components/List/List';
-import AddMaterias from './components/Cards/MateriasCards';
-import MateriasCards from './components/Cards/MateriasCards';
+import ListaMaterias from './components/Cards/MateriasCards';
 
 
 function App() {
@@ -26,7 +25,7 @@ function App() {
          <Route path="/alumnos" element={<Dashboard children={<Alumnos/>} />} />
          <Route path="/login" element={<Login/>} />
          <Route path="/notas" element={<Dashboard children={<Profesores/>} />} />
-         <Route path="/materias" element={<Dashboard children={<AddMaterias />} />} />
+         <Route path="/materias" element={<Dashboard children={<ListaMaterias />} />} />
          <Route path='/addusers' element={<Dashboard children={<AddUsers />}/>} />
          <Route path='/list' element={<Dashboard children={<List />}/>} /> 
       </Routes>
