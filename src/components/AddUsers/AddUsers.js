@@ -16,11 +16,11 @@ const AddUser = () => {
     curso: "",
     materias: {
       lenguas: {
-        cursando: "lenguas",
+        cursando: "no",
         notas: [6, 8, 10],
       },
       matematicas: {
-        cursando: "matematicas",
+        cursando: "no",
         notas: [],
       },
       fisica: {
@@ -38,7 +38,7 @@ const AddUser = () => {
     },
   });
 
-  function handleForm(e) {
+ const handleForm = (e) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
