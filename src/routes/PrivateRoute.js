@@ -5,7 +5,7 @@ import {UserContext} from "./../context/UserContext"
 const PrivateRoute = ({children}) => {
     const {getAuth, auth} = useContext(UserContext);
     getAuth();
-    console.log(auth);
+    
     return(
         auth? children : <Navigate to='/' replace />
     );

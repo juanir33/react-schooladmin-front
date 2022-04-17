@@ -44,7 +44,7 @@ const ProfileCard = () => {
     
   ,[])
   
-  console.log(users);
+  
   const usuarios = users;
 
   return usuarios.map((usuario) => {

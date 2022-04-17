@@ -29,7 +29,7 @@ const UserProvider = ({children}) => {
     };
     const getAuth = async () =>{
         const toke = localStorage.getItem('token')
-        console.log(token);
+        
         if(toke){      
              
         
