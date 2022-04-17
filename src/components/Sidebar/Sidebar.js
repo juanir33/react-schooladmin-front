@@ -13,13 +13,7 @@ import { useContext } from "react";
 import { Navigate, NavLink, useNavigate } from "react-router-dom";
 
 import sideLs from "../../constants/sideLinks";
-<<<<<<< HEAD
-import { useContext } from "react";
 import { UserContext } from "../../context/UserContext";
-
-=======
-import { UserContext } from "../../context/UserContext";
->>>>>>> 09f2031172a9bc161dc2351b55101d14f767c3ca
 
 import "./Sidebar.css";
 
@@ -27,13 +21,9 @@ import "./Sidebar.css";
 //habria que guardarlo como [] a dicho rol o buscar la solucion al problema
 
 const Sidebar = () => {
-  const { decoder } = useContext(UserContext);
+  const { decoder, logOut } = useContext(UserContext);
 
-<<<<<<< HEAD
-  const {logOut} = useContext(UserContext);{
-=======
   const userLog = decoder();
->>>>>>> 09f2031172a9bc161dc2351b55101d14f767c3ca
 
   const handleLogOut = () => {
     localStorage.clear();
@@ -80,11 +70,7 @@ const Sidebar = () => {
 
         <CDBSidebarFooter>
           <div>
-<<<<<<< HEAD
-            <NavLink exact to="/login" className="foot" onClick={logOut}>
-=======
-            <NavLink to="/" onClick={handleLogOut} className="foot nav-link">
->>>>>>> 09f2031172a9bc161dc2351b55101d14f767c3ca
+            <NavLink onClick={logOut} className="foot nav-link">
               <CDBSidebarMenuItem className="item" icon="sign-out-alt">
                 Logout
               </CDBSidebarMenuItem>
@@ -95,6 +81,6 @@ const Sidebar = () => {
     </div>
   );
 };
-}
+
 
 export default Sidebar;
