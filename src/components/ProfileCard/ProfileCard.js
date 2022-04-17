@@ -21,8 +21,8 @@ import * as moment from 'moment'
 
 const ProfileCard = () => {
   const [users, setUsers] = useState([])
-  const {authen} = useContext(UserContext)
-  authen();
+  const {getAuth} = useContext(UserContext)
+  getAuth();
   
 
   useEffect(()=>{
