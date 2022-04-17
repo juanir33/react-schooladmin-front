@@ -14,6 +14,9 @@ import MateriasCards from './components/Cards/MateriasCards';
 import LoginForm from './components/LoginForm/LoginForm.css';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
+import AddUsers from './components/AddUsers/AddUsers';
+import List from './components/List/List';
+import ListaMaterias from './components/Cards/MateriasCards';
 
 
 function App() {
@@ -32,10 +35,12 @@ function App() {
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
             <Route path="/notas" element={<PrivateRoute><Dashboard children={<Profesores />} /></PrivateRoute>} />
             <Route path="/materias" element={<PrivateRoute><Dashboard children={<MateriasCards />} /></PrivateRoute>} />
-
+            <Route path='/addusers' element={<PrivateRoute><Dashboard children={<AddUsers />}/></PrivateRoute>} />
+           <Route path='/list' element={<PrivateRoute><Dashboard children={<List />}/></PrivateRoute>} />
 
           </Routes>
         </UserProvider>
+
       </ModalProvider>
     </Router>
   );
