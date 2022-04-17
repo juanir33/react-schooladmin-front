@@ -23,24 +23,22 @@ function App() {
   return (
     <Router>
       <ModalProvider>
-        <UserProvider>
-
-          <Routes>
-
-
-            <Route path="/" element={<PrivateRoute><Dashboard children={<ProfileCard />} /></PrivateRoute>} />
-            <Route path="/profesores" element={<PrivateRoute><Dashboard children={<Profesores />} /></PrivateRoute>} />
-            <Route path="/alumnos" element={<PrivateRoute><Dashboard children={<Alumnos />} /></PrivateRoute>} />
-            <Route path="/login" element={<PublicRoute><Login /></PublicRoute>} />
-            <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
-            <Route path="/notas" element={<PrivateRoute><Dashboard children={<Profesores />} /></PrivateRoute>} />
-            <Route path="/materias" element={<PrivateRoute><Dashboard children={<MateriasCards />} /></PrivateRoute>} />
-            <Route path='/addusers' element={<PrivateRoute><Dashboard children={<AddUsers />}/></PrivateRoute>} />
-           <Route path='/list' element={<PrivateRoute><Dashboard children={<List />}/></PrivateRoute>} />
-
-          </Routes>
-        </UserProvider>
-
+      <UserProvider>
+      
+      <Routes>
+       
+        
+         <Route path="/home" element={<PrivateRoute><Dashboard children={<ProfileCard/>} /></PrivateRoute>}/>
+         <Route path="/profesores" element={<PrivateRoute><Dashboard children={<Profesores/>} /></PrivateRoute>} />  
+         <Route path="/alumnos" element={<PrivateRoute><Dashboard children={<Alumnos/>} /></PrivateRoute>} />  
+         <Route index path="/" element={<PublicRoute><Login/></PublicRoute>} />
+         <Route path="/register" element={<PublicRoute><Register/></PublicRoute>} />
+         <Route path="/notas" element={<PrivateRoute><Dashboard children={<Profesores/>} /></PrivateRoute>} />  
+         <Route path="/materias" element={<PrivateRoute><Dashboard children={<MateriasCards/>} /></PrivateRoute>} />  
+         
+       
+      </Routes>
+      </UserProvider>
       </ModalProvider>
     </Router>
   );

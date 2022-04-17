@@ -24,14 +24,10 @@ const ModalNotas = () => {
 
   }
   
-  const getUsers = () => {
-    const response = localStorage.getItem('users');
-    const users = JSON.parse(response)
-    return users
-  }
   
   
-  const alumnos = getUsers().sort(sorted).filter((user) => user.rol === "alumno");
+  
+  const alumnos = [];
 
   return (
     <>

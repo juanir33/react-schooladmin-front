@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
 import { Button, Form, Modal } from "react-bootstrap";
 import { ModalContext } from "../../context/ModalContext";
-import { sorted } from "../../helpers/alumnosSort";
-import { users } from "../../helpers/data/users";
+
+
 
 const ModalNotasEditar = () => {
   const { showE, handleCloseE } = useContext(ModalContext);
-  const alumnos = users.sort(sorted).filter(user => user.rol === 'alumno')
+  const alumnos = []
   return (
     <>
       <Modal
