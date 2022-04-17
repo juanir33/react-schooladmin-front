@@ -10,6 +10,8 @@ import {
 import { NavLink } from "react-router-dom";
 import { alumno , preceptor, profesor } from "../../constants/roles";
 import sideLs from "../../constants/sideLinks";
+import { useContext } from "react";
+import { UserContext } from "../../context/UserContext";
 
 
 import "./Sidebar.css";
@@ -23,9 +25,7 @@ let user = {name:'juan', rol: profesor}
 
 const Sidebar = () => {
 
-  const handleLogOut = ()=>{
-    localStorage.clear()
-  }
+  const {logOut} = useContext(UserContext);{
 
   const links = sideLs.map((link, index) =>  {
     return (
@@ -64,7 +64,7 @@ const Sidebar = () => {
 
         <CDBSidebarFooter>
           <div>
-            <NavLink exact to="/login" className="foot" onClick={handleLogOut}>
+            <NavLink exact to="/login" className="foot" onClick={logOut}>
               <CDBSidebarMenuItem className="item" icon="sign-out-alt">
                 Logout
               </CDBSidebarMenuItem>
@@ -75,5 +75,6 @@ const Sidebar = () => {
     </div>
   );
 };
+}
 
 export default Sidebar;

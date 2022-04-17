@@ -10,7 +10,7 @@ import { UserContext } from "../../context/UserContext"
 
 const LoginForm = () => {
 
-    const {user, loginUser, auth} = useContext(UserContext);
+    const {loginUser, auth} = useContext(UserContext);
     const navigate = useNavigate();
     useEffect(() =>{
         if(auth){
