@@ -27,6 +27,23 @@ const UserProvider = ({ children }) => {
     }
 
 
+    const registerUser = async (values) => {
+        try {
+            const { data } = await axiosClient.post("/auth/register", values);
+            setToken(data.token);
+            setAuth(true)
+            localStorage.setItem('token', data.token)
+        } catch (error) {
+            console.log(error);
+            setAuth(false);
+            if (localStorage.getItem('token')) {
+                localStorage.removeItem('token');
+            }
+        }
+    }
+
+
+
     const getAuth = async () => {
         const token = localStorage.getItem('token');
         if (token) {
@@ -58,14 +75,15 @@ const UserProvider = ({ children }) => {
 
     }
 
-    const decoder = () =>{
-        const data  = localStorage.getItem('token');
+    const decoder = () => {
+        const data = localStorage.getItem('token');
         const logged = jwt_decode(data)
         return logged
-        };
-        
-    return(
-        <UserContext.Provider value={{user, setUser, loginUser, auth, getAuth, logOut, decoder }}>
+    };
+
+
+    return (
+        <UserContext.Provider value={{ user, setUser, loginUser, registerUser, auth, getAuth, logOut, decoder}}>
             {children}
         </UserContext.Provider>
     )

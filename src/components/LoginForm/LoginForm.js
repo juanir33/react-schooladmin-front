@@ -1,8 +1,7 @@
 import { Form } from "react-bootstrap"
 import { Link, useNavigate } from "react-router-dom"
-import { validationLogin } from "../../helpers/validations"
+import { validationLogin } from "../../helpers/validationLogin"
 import useForm from "../../hooks/useForm"
-import axiosClient from "../../config/axiosClient"
 import { values_login } from "../../constants/index"
 import Alert from "@mui/material/Alert"
 import { useContext, useEffect } from "react"
@@ -37,11 +36,6 @@ const LoginForm = () => {
                                         <div className="form-floating mb-3">
                                             <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp}/>
                                                 <label for="floatingPassword">Contraseña</label>
-                                        </div>
-
-                                        <div className="d-flex mb-3">
-                                            <input className="form-check-input" type="checkbox" value="" id="rememberPasswordCheck"/>
-                                                <label className="form-check-label" for="rememberPasswordCheck">Recordarme</label>
                                         </div>
                                         <div className="d-grid">
                                             <button className="btn btn-primary btn-login text-uppercase fw-bold" type="submit">Entrar</button>
