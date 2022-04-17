@@ -9,7 +9,8 @@ import news from "../../constants/news";
 import ProfileCard from "../ProfileCard/ProfileCard";
 import { Card } from "react-bootstrap";
 
-const nuevas = news.map( ne => {return (<Cards titulo= {ne.title} texto= {ne.text} boton= {ne.buton}/>)})
+const nuevas = news.map( ne => 
+  {return (<Cards titulo= {ne.title} texto= {ne.text} boton= {ne.buton}/>)})
     console.log(nuevas);
 const Dashboard = ({children}) => {
   return (

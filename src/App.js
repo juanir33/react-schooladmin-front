@@ -14,6 +14,9 @@ import MateriasCards from './components/Cards/MateriasCards';
 import LoginForm from './components/LoginForm/LoginForm.css';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
+import AddUsers from './components/AddUsers/AddUsers';
+import List from './components/List/List';
+import ListaMaterias from './components/Cards/MateriasCards';
 
 
 function App() {
