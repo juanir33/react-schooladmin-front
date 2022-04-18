@@ -1,5 +1,5 @@
 import { useState } from "react";
-import uniqid from "uniqid"; // instalamos con npm install uniqid
+ // instalamos con npm install uniqid
 import { Form } from "react-bootstrap";
 import "./AddUsers.css";
 
@@ -11,7 +11,7 @@ const AddUser = () => {
     tel: "",
     password: "",
     rol: "",
-    userId: uniqid(),
+    userId: '',
     asistencia: "",
     curso: "",
     materias: {
