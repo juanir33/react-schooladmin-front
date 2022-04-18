@@ -46,6 +46,7 @@ const ProfileCard = () => {
   
   
   const usuarios = users;
+  console.log(usuarios);
 
   return usuarios.map((usuario) => {
     return (
@@ -57,7 +58,7 @@ const ProfileCard = () => {
             className="d-flex w-100 justify-content-center
       "
           >
-            {/* <Card.Text>{usuario.profile.apellido + ' ' + usuario.profile.nombre}</Card.Text> */}
+            <Card.Text>{usuario.profile ? usuario.profile.apellido + ' ' + usuario.profile.nombre : 'Sin datos'}</Card.Text>
             
           </div>
         </Card.Body>
@@ -67,7 +68,7 @@ const ProfileCard = () => {
             <span className="tiptext">Fecha de Ingreso</span> {moment(usuario.createdAt).format( "DD-MM-YYYY")}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaWhatsapp className="mx-2 icon" /> {}{" "}
+            <FaWhatsapp className="mx-2 icon" /> {usuario.profile ? usuario.profile.telefonos: 'Sin datos'}{" "}
             <span className="tiptext">Telefono personal</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
@@ -78,12 +79,12 @@ const ProfileCard = () => {
             <FaIdBadge className="mx-2 icon" /> {usuario._id}{" "}
             <span className="tiptext">Id</span>{" "}
           </ListGroupItem>
-          {/* <ListGroupItem className="tool">
+          <ListGroupItem className="tool">
             <FaSchool className="mx-2 icon" /> IPET 255{" "}
             <span className="tiptext">Establecimiento</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaPhoneSquareAlt className="mx-2 icon" /> 358-423512{" "}
+            <FaPhoneSquareAlt className="mx-2 icon" /> {usuario.profile ? usuario.profile.telefonos: 'Sin datos'}{" "}
             <span className="tiptext">Telefono institucion</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
@@ -92,9 +93,9 @@ const ProfileCard = () => {
           </ListGroupItem>
 
           <ListGroupItem className="tool">
-            <FaMapMarked className="mx-2 icon" /> Maria del mar 356 - CP3456{" "}
+            <FaMapMarked className="mx-2 icon" /> {usuario.profile ? usuario.profile.domicilio: 'Sin datos'}{" "}
             <span className="tiptext">Direccion establecimiento</span>{" "}
-          </ListGroupItem> */}
+          </ListGroupItem>
         </ListGroup>
         <Card.Body>
           <Card.Link href="#"></Card.Link>

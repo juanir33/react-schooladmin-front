@@ -24,12 +24,9 @@ const UserProfile = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   
 
-  const handleDatosPerfil = async (e)=>{
-
-    
+  const handleDatosPerfil = async (e)=>{  
      e.preventDefault();
      
-
      const transform = {profile:{
          nombre: values.nombre,
          apellido: values.apellido,
@@ -37,8 +34,14 @@ const UserProfile = () => {
          telefonos: `${values.telefono} ${values.telefono2}`
      }};
      
-     
-    const response = await axiosClient.post(idLogUrl, transform)
+     try {
+         const response = await axiosClient.post(idLogUrl, transform)
+         console.log(response);
+     } catch (error) {
+         console.log(error);
+     }
+    
+  };
 
      
 
