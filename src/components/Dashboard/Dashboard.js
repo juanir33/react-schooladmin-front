@@ -22,9 +22,6 @@ const Dashboard = ({children}) => {
         <NavBar />
         <div className="container main-content d-flex w-100 justify-content-center flex-wrap ">
          {children} 
-        
-        
-        
           
         </div>
         <br />
