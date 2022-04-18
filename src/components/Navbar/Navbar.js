@@ -71,7 +71,7 @@ const NavBar = () => {
                     </Dropdown.Item>
                     <Dropdown.Divider/>
                     <Dropdown.Item >
-                    <Button   onClick= {logOut} className=" " id="user-a"><HiOutlineLogout />   Logout </Button>
+                    <Button   onClick= {logOut} className=" " id="user-a">   Cerrar sesion </Button>
                     </Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown>
