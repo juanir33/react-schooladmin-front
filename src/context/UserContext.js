@@ -2,6 +2,8 @@
 import { createContext, useEffect, useState } from "react";
 import axiosClient from "../config/axiosClient";
 import jwt_decode from 'jwt-decode'
+import { Alert, Button, Toast } from "react-bootstrap";
+import { Navigate } from "react-router-dom";
 
 export const UserContext = createContext();
 
@@ -28,11 +30,25 @@ const UserProvider = ({ children }) => {
 
 
     const registerUser = async (values) => {
+        
         try {
-            const { data } = await axiosClient.post("/auth/register", values);
-            setToken(data.token);
-            setAuth(true)
-            localStorage.setItem('token', data.token)
+            const dataTransform = {
+                email: values.email,
+                password: values.password,
+                profile:{
+                    nombre: values.name,
+                    apellido: values.lastname
+
+                }
+            }
+            const {status} = await axiosClient.post("/auth/register", dataTransform);
+            console.log(status);
+            
+               
+                  Navigate("/")
+                
+            
+
         } catch (error) {
             console.log(error);
             setAuth(false);

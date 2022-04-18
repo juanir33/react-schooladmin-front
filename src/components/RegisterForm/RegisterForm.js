@@ -11,14 +11,10 @@ const Register = () => {
 
     const {registerUser, auth} = useContext(UserContext);
     const navigate = useNavigate();
-    useEffect(() =>{
-        if(auth){
-            navigate('/home')
-        }
-    },[auth])
+    
 
-    const {handleKeyUp, handleSubmit, value, errors} = useForm(values_register, registerUser, validationRegister);
-
+    const {handleKeyUp, handleSubmit, value, errors, } = useForm(values_register, registerUser, validationRegister);
+    
 
 
     return (

@@ -16,6 +16,7 @@ const NavBar = () => {
   const { pathname } = useLocation();
   const { decoder , logOut} = useContext(UserContext);
   const log = decoder();
+  console.log(log);
   const navigate = useNavigate()
   const handlePerfil =() =>{
 
