@@ -10,8 +10,8 @@ import {
   FaWhatsapp,
   FaPhoneSquareAlt,
   FaEnvelopeOpenText,
-  FaSchool,
   FaMapMarked,
+  FaSchool,
 } from "react-icons/fa";
 import "./ProfileCard.css";
 import { UserContext } from "../../context/UserContext";
