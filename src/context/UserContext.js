@@ -185,7 +185,7 @@ const UserProvider = ({ children }) => {
           const userId = e.target.id;
           const response = await axiosClient.delete(`users/delete/${userId}`);
           setDeleted(response.data);
-          console.log(deleted);
+          
           if (deleted.ok === true) {
             SwalSucces.fire({
               icon: "succes",
@@ -205,7 +205,9 @@ const UserProvider = ({ children }) => {
       console.log(error);
     }
   };
-  console.log(deleted);
+
+   
+ 
   return (
     <UserContext.Provider
       value={{
@@ -224,6 +226,7 @@ const UserProvider = ({ children }) => {
         search,
         setSearch,
         handleDeleteUser,
+        
       }}
     >
       {children}

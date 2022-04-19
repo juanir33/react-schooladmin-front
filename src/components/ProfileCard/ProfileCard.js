@@ -13,19 +13,60 @@ import {
   FaSchool,
   FaMapMarked,
   FaTrashAlt,
+  
 } from "react-icons/fa";
+import {GiShieldDisabled} from 'react-icons/gi'
 import "./ProfileCard.css";
 import { UserContext } from "../../context/UserContext";
 
 
 import * as moment from 'moment'
 import SearchBar from "../SearchBar/SearchBar";
+import ModalEditRol from "../Modals/ModalEdit";
+import { ModalContext } from "../../context/ModalContext";
+import axiosClient from "../../config/axiosClient";
+
 
 const ProfileCard = () => {
-  const {users, handleDeleteUser} = useContext(UserContext);
+  const {users, handleDeleteUser, getAuth} = useContext(UserContext);
+  const {handleShowR} = useContext(ModalContext)
+  
+  const habilitarUser = async (e)=>{
+     getAuth();
+     const dataSend = {status: true};
+     const userId = e.target.id;
+     try {
+       const {data} = await axiosClient.post(`users/changerol/${userId}`, dataSend);
+     console.log(data);
+      if(data.ok === true){
+        alert('usuario habilitado')
+      }
+     } catch (error) {
+       console.log(error);
+       
+     }
+     
+  } 
+  const disableUser = async (e)=>{
+    getAuth();
+    const dataSend = {status: false};
+    const userId = e.target.id;
+    try {
+      const {data} = await axiosClient.post(`users/changerol/${userId}`, dataSend);
+    console.log(data);
+     if(data.ok === true){
+       alert('usuario deshabilitado')
+     }
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+ } 
 
   return (
     <>
+    <ModalEditRol/>
     <SearchBar/>
     <div className="d-flex w-100 flex-wrap justify-content-evenly">
   {users.map((usuario) => {
@@ -78,8 +119,8 @@ const ProfileCard = () => {
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Button className=" btns-light btn mx-2" >Habilitar</Button>
-          <Button className="btns-light btn mx-1" >Editar</Button>
+          { usuario.status === true ?(<Button className=" btns-light btn " id={usuario._id} onClick={disableUser}><GiShieldDisabled/></Button>):(<Button className=" btns-light btn mx-2" id={usuario._id} onClick={habilitarUser}>Habilitar</Button>)}
+          <Button className="btns-light btn mx-1"  id={usuario._id} onClick={handleShowR}>Editar</Button>
           <Button className="btns-light btn mx-3" id={usuario._id}  onClick={handleDeleteUser}><FaTrashAlt/></Button>
         </Card.Body>
       </Card>
