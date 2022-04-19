@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import 'animate.css';
-import { text } from "express";
 
 export const UserContext = createContext();
 
@@ -173,9 +172,7 @@ const UserProvider = ({ children }) => {
         DeleteSwal.fire({
           icon: 'warning',
           title: `Esta seguro de eliminar al usuario?`,
-          showClass: {
-            popup: "animate__fadeInDown",
-          },
+          
           hideClass: {
             popup: "animate__flipOutX",
           },
@@ -195,22 +192,24 @@ const UserProvider = ({ children }) => {
           allowEnterKey: false,
         }).then(async (resulst)  =>{
           if(resulst.isConfirmed === true){
-            const userId = e.target;
+            const userId = e.target.id ;
             const response = await axiosClient.delete(`users/delete/${userId}`)
             setDeleted(response.data);
           if(deleted.ok === true){
-            DeleteSwal.fire({
-              icon: 'error',
-              title: '', 
-            })
-          
+            DeleteSwal.fire({icon: 'succes', title:'Eliminado con exito',background: 'var(--platinum)',color: 'var(--skobeloff)',confirmButtonText:'volver', customClass:{
+              confirmButton: 'btn btns'}
+              
+          })
+          getUsers()
           }
 
-        }})
+        }
+        })
 
         
                 
       }catch (error) {
+        console.log(error);
         
 
         
