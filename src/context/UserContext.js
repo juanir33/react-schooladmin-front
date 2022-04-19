@@ -228,7 +228,7 @@ const UserProvider = ({ children }) => {
         search,
         setSearch,
         handleDeleteUser,
-        getAlumnos,
+       
       }}
     >
       {children}
