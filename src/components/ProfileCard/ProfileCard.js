@@ -12,6 +12,7 @@ import {
   FaEnvelopeOpenText,
   FaMapMarked,
   FaTrashAlt,
+  FaSchool,
 } from "react-icons/fa";
 import "./ProfileCard.css";
 import { UserContext } from "../../context/UserContext";

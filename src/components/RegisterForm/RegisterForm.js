@@ -15,7 +15,8 @@ const Register = ({children}) => {
     const navigate = useNavigate();
     
 
-    const {handleKeyUp, handleSubmit, value, errors, } = useForm(values_register, registerUser, validationRegister);
+    const {handleKeyUp, handleSubmit, value, errors, } = 
+    useForm(values_register, registerUser, validationRegister);
     
 
 

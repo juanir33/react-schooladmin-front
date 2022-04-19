@@ -3,33 +3,47 @@ import { Button, Card, Form, ListGroup, ListGroupItem } from "react-bootstrap";
 import { RiCalendarTodoFill } from "react-icons/ri";
 import { useState } from "react";
 import axiosClient from "../../config/axiosClient";
+import getAuth from "../../context/UserContext";
 
 
 const ListaMaterias= () => {
-  
-  const [nombre, setNombre] = useState("")
-  const [codigo, setCodigo] = useState("")
 
-  const addMaterias = () => {   
-    materias.push({
-      nombre: nombre, 
-      codigo: codigo
-    });
-    console.log(materias);
+  const [form, setForm] = useState("")  //agregar materias
+  const addMateria = async () => {
+    const data = await axiosClient.post("/materias", form);
+    console.log(form);
   }
-  let materias = [
+
+  const [mat, setMat] = useState([]);  //traer materias
+  const getMaterias = async () => {
+    try {
+      const response = await axiosClient.get("/materias");
+      const { data } = response;
+      setMat(data);
+    } catch (error) {
+        console.warn(error);
+    }
+  }; 
+
+
+  const handleForm = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+    console.log(form);
+  }
+  
+ const materias = [ // hardcodeado de materias
     {
       nombre: "Matemitica",
       abreviatura: "MAT1",
-      fecha: "23/02/2022",
     },
     {
       nombre: "Historia",
       abreviatura: "HIS1",
-      fecha: "23/02/2022",
     }
   ];
-
 
   const listMaterias = materias.map((materia) => {
     return (
@@ -71,20 +85,20 @@ const ListaMaterias= () => {
               type="text"
               name="nombre"
               placeholder="Nombre de materia"
-              onKeyUp={(e) => setNombre(e.target.value)}
+              onKeyUp={(e) => handleForm(e)}
             ></Form.Control>
           </ListGroupItem>
           <ListGroupItem className="tool">
             <Form.Control
               type="text"
               name="abreviatura"
-              placeholder="Codigo de materia"
-              onKeyUp={(e)=> setCodigo(e.target.value)}
+              placeholder="abreviatura"
+              onKeyUp={(e) => handleForm(e)}
             ></Form.Control>
           </ListGroupItem>
         </ListGroup>
         <Card.Body className="d-flex justify-content-center">
-          <Button onClick={addMaterias} className="btns-light">Crear</Button>
+          <Button onClick={addMateria} className="btns-light">Crear</Button>
         </Card.Body>
       </Card>
       

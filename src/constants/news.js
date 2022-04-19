@@ -1,12 +1,12 @@
  const news = [
     {
-      title: "News2",
-      text: "el ma;ana esta mas cerca que nunca",
+      title: "Noticia 1",
+      text: "Texto noticia 1",
       buton: "ver mas ",
     },
     {
-      title: "News1",
-      text: "el ma;ana esta mas cerca que nunca",
+      title: "Noticia 2",
+      text: "texto noticia 2 ",
       buton: "ver mas ",
     },
    

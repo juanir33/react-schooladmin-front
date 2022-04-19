@@ -8,7 +8,6 @@ const sideLs = [
   new sideL("list-ol", "/grados", "Grados", ["admin", ]),
   new sideL("user-clock", "/preceptores", "Preceptores", ["admin"]),
   new sideL("pen-alt", "/notas", "Notas", ["admin", "profesor"]),
-  new sideL("hand-paper", "/asistencias", "Asistencias", ["admin", ]),
   new sideL("chart-line", "/reportes", "Reportes", ["admin",]),
 ];
 
