@@ -12,8 +12,9 @@ const SearchBar = () => {
 
   const handleSubmitSearch = (e)=>{
       e.preventDefault()
-      const filter = users.filter(user => user.profile.apellido.toLowerCase() === search.toLowerCase())
+      const filter = users.filter(user => (user.profile.nombre.toLowerCase() === search.toLowerCase() || user.profile.apellido.toLowerCase() === search.toLowerCase()) )
       setUsers(filter)
+      console.log(filter);
   }
 
   
@@ -34,7 +35,7 @@ const SearchBar = () => {
         <Col md={7} sm={12} className=" d-flex">
           <InputGroup>
             <FormControl
-              className="w-75 "
+              className="w-75 lupa"
               placeholder="Buscar un usuario"
               aria-label="Buscar un usuario"
               aria-describedby="lupa"
