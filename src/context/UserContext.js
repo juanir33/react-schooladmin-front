@@ -164,6 +164,7 @@ const UserProvider = ({ children }) => {
     setUsers(data.users);
   };
   const handleDeleteUser = (e) => {
+     getAuth();
     
     try {
       DeleteSwal.fire({
@@ -194,7 +195,7 @@ const UserProvider = ({ children }) => {
           const response = await axiosClient.delete(`users/delete/${userId}`);
           setDeleted(response.data);
           
-          if (deleted.ok === true) {
+          if (response.data.ok === true) {
             SwalSucces.fire({
               icon: "succes",
               title: "Eliminado con exito",

@@ -28,7 +28,7 @@ import axiosClient from "../../config/axiosClient";
 
 
 const ProfileCard = () => {
-  const {users, handleDeleteUser, getAuth} = useContext(UserContext);
+  const {users, handleDeleteUser, getAuth , getUsers} = useContext(UserContext);
   const {handleShowR} = useContext(ModalContext)
   
   const habilitarUser = async (e)=>{
@@ -37,10 +37,11 @@ const ProfileCard = () => {
      const userId = e.target.id;
      try {
        const {data} = await axiosClient.post(`users/changerol/${userId}`, dataSend);
-     console.log(data);
+     
       if(data.ok === true){
-        alert('usuario habilitado')
-      }
+        alert('usuario habilitado');
+        
+      }getUsers();
      } catch (error) {
        console.log(error);
        
