@@ -12,7 +12,7 @@ const SearchBar = () => {
 
   const handleSubmitSearch = (e)=>{
       e.preventDefault()
-      const filter = users.filter(user => user.profile.apellido === search)
+      const filter = users.filter(user => user.profile.apellido.toLowerCase() === search.toLowerCase())
       setUsers(filter)
   }
 
