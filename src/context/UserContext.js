@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import 'animate.css';
+import { text } from "express";
 
 export const UserContext = createContext();
 
@@ -16,8 +17,10 @@ const UserProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
+  const [deleted, setDeleted] = useState([]);
   const navigate = useNavigate();
   const SuccesSwal = withReactContent(Swal);
+  const DeleteSwal = withReactContent(Swal);
 
   const loginUser = async (values) => {
     try {
@@ -163,13 +166,55 @@ const UserProvider = ({ children }) => {
 
 
   }
-  const handleDeleteUser = async (e)=>{
+  const handleDeleteUser =  (e)=>{
       getAuth();
-      const userId = e.target.id 
-      const response = await axiosClient.delete(`users/delete/${userId}`);
-      console.log(response);
-      if(response.data.ok === true){
-        getUsers()
+      try {
+
+        DeleteSwal.fire({
+          icon: 'warning',
+          title: `Esta seguro de eliminar al usuario?`,
+          showClass: {
+            popup: "animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__flipOutX",
+          },
+          confirmButtonText: 'Eliminar',
+          confirmButtonAriaLabel:'El usuario ha sido eliminado',
+          showCancelButton: true,
+          cancelButtonText: 'Cancelar',
+          background: 'var(--platinum)',
+          color: 'var(--skobeloff)',
+          customClass:{
+              confirmButton: 'btn btns'
+              
+          },
+          focusCancel: true,
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          allowEnterKey: false,
+        }).then(async (resulst)  =>{
+          if(resulst.isConfirmed === true){
+            const userId = e.target;
+            const response = await axiosClient.delete(`users/delete/${userId}`)
+            setDeleted(response.data);
+          if(deleted.ok === true){
+            DeleteSwal.fire({
+              icon: 'error',
+              title: '', 
+            })
+          
+          }
+
+        }})
+
+        
+                
+      }catch (error) {
+        
+
+        
+      
       }
 
       
