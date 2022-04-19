@@ -14,6 +14,8 @@ const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [auth, setAuth] = useState(false);
   const [token, setToken] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState([]);
   const navigate = useNavigate();
   const SuccesSwal = withReactContent(Swal);
 
@@ -113,6 +115,58 @@ const UserProvider = ({ children }) => {
     const logged = jwt_decode(data);
     return logged;
   };
+   
+  const getUsers = async () => {
+    const { data } = await axiosClient.get("users/list");
+    setUsers(data.users);
+  };
+  useEffect(() => {
+    getUsers()
+    
+    try {
+      getUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  
+  
+
+  const handleFilterUsers =  (e) => {
+    if(users.some(user => user.rol === e.target.id)){
+      
+    
+    ;
+    const userFilter = users.filter(
+      (usuario) => usuario.rol === e.target.id
+    );
+     setUsers(userFilter)
+  
+   }else{
+     const newFilter = async () =>{
+       const {data} = await axiosClient.get("users/list");
+     const userFilter = data.users.filter(
+      (usuario) => usuario.rol === e.target.id
+    );
+     setUsers(userFilter)
+   }
+   newFilter()
+  }};
+
+  const handleSearchBar = async (e)=>{
+    const {data} = await axiosClient.get("users/list");
+    setSearch(e.target.value);
+    setUsers(data.users)
+    
+    
+
+
+  }
+
+  
+    
+  
 
   return (
     <UserContext.Provider
@@ -125,6 +179,12 @@ const UserProvider = ({ children }) => {
         getAuth,
         logOut,
         decoder,
+        setUsers,
+        users,
+        handleFilterUsers,
+        handleSearchBar,
+        search,
+        setSearch
       }}
     >
       {children}
@@ -132,4 +192,4 @@ const UserProvider = ({ children }) => {
   );
 };
 
-export default UserProvider;
+export default UserProvider

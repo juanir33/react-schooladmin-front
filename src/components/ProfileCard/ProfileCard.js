@@ -16,39 +16,18 @@ import {
 import "./ProfileCard.css";
 import { UserContext } from "../../context/UserContext";
 
-import axiosClient from "../../config/axiosClient";
+
 import * as moment from 'moment'
+import SearchBar from "../SearchBar/SearchBar";
 
 const ProfileCard = () => {
-  const [users, setUsers] = useState([])
-  const {getAuth} = useContext(UserContext)
-  getAuth();
-  
+  const {users} = useContext(UserContext);
 
-  useEffect(()=>{
-    const getUsers = async () => {
-      
-      const {data} = await axiosClient.get('users/list');
-       setUsers(data.users)
-    }
-    try {
-      getUsers()
-    } catch (error) {
-      console.log(error);
-      
-    };;
-    
-    
-
-  }
-    
-  ,[])
-  
-  
-  const usuarios = users;
-  console.log(usuarios);
-
-  return usuarios.map((usuario) => {
+  return (
+    <>
+    <SearchBar/>
+    <div className="d-flex w-75 flex-wrap justify-content-evenly">
+  {users.map((usuario) => {
     return (
       <Card style={{ width: "18rem" }} className="profile-card m-3" >
         <Card.Img variant="top" src="" />
@@ -103,7 +82,10 @@ const ProfileCard = () => {
         </Card.Body>
       </Card>
     );
-  });
+  })}
+  </div>
+
+  </>);
 };
 
 export default ProfileCard;
