@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import {
   RiCalendarTodoFill,
   RiMailFill,
@@ -12,6 +12,7 @@ import {
   FaEnvelopeOpenText,
   FaSchool,
   FaMapMarked,
+  FaTrashAlt,
 } from "react-icons/fa";
 import "./ProfileCard.css";
 import { UserContext } from "../../context/UserContext";
@@ -21,12 +22,12 @@ import * as moment from 'moment'
 import SearchBar from "../SearchBar/SearchBar";
 
 const ProfileCard = () => {
-  const {users} = useContext(UserContext);
+  const {users, handleDeleteUser} = useContext(UserContext);
 
   return (
     <>
     <SearchBar/>
-    <div className="d-flex w-75 flex-wrap justify-content-evenly">
+    <div className="d-flex w-100 flex-wrap justify-content-evenly">
   {users.map((usuario) => {
     return (
       <Card style={{ width: "18rem" }} className="profile-card m-3" >
@@ -77,8 +78,9 @@ const ProfileCard = () => {
           </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#"></Card.Link>
-          <Card.Link href="#"></Card.Link>
+          <Button className=" btns-light btn mx-2" >Habilitar</Button>
+          <Button className="btns-light btn mx-1" >Editar</Button>
+          <Button className="btns-light btn mx-3" id={usuario._id}  onClick={handleDeleteUser}><FaTrashAlt/></Button>
         </Card.Body>
       </Card>
     );

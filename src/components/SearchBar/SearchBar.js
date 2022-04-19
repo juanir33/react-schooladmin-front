@@ -19,8 +19,8 @@ const SearchBar = () => {
   
   return (
     <>
-      <div className="d-flex justify-content-between w-75 p-3 search-container my-3">
-        <Col md={5} className="col-border  d-flex justify-content-between px-2">
+      <div className="d-flex flex-wrap justify-content-between w-100 p-3 search-container  my-3">
+        <Col md={5} sm={12} className="col-border  d-flex justify-content-between px-2 ">
           <Button className="btns" id="admin" onClick={handleFilterUsers}>
             Admin
           </Button>
@@ -31,7 +31,7 @@ const SearchBar = () => {
             Profesores
           </Button>
         </Col>
-        <Col md={7} className=" d-flex">
+        <Col md={7} sm={12} className=" d-flex">
           <InputGroup>
             <FormControl
               className="w-75 "

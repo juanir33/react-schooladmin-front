@@ -163,6 +163,18 @@ const UserProvider = ({ children }) => {
 
 
   }
+  const handleDeleteUser = async (e)=>{
+      getAuth();
+      const userId = e.target.id 
+      const response = await axiosClient.delete(`users/delete/${userId}`);
+      console.log(response);
+      if(response.data.ok === true){
+        getUsers()
+      }
+
+      
+
+  }
 
   
     
@@ -184,7 +196,8 @@ const UserProvider = ({ children }) => {
         handleFilterUsers,
         handleSearchBar,
         search,
-        setSearch
+        setSearch,
+        handleDeleteUser
       }}
     >
       {children}
