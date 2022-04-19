@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import 'animate.css';
+import "animate.css";
 
 export const UserContext = createContext();
 
@@ -20,6 +20,8 @@ const UserProvider = ({ children }) => {
   const navigate = useNavigate();
   const SuccesSwal = withReactContent(Swal);
   const DeleteSwal = withReactContent(Swal);
+  const SwalSucces = withReactContent(Swal);
+  const SwalError = withReactContent(Swal);
 
   const loginUser = async (values) => {
     try {
@@ -50,29 +52,29 @@ const UserProvider = ({ children }) => {
       console.log(data);
       if (data.ok === true) {
         SuccesSwal.fire({
-          title: "Registro exitoso, se te ha enviado un e-mail de confirmacion. Para ingresar al sitio debes ser habilitado por el Administrador",
+          title:
+            "Registro exitoso, se te ha enviado un e-mail de confirmacion. Para ingresar al sitio debes ser habilitado por el Administrador",
           showClass: {
             popup: "animate__animated animate__fadeInDown",
           },
           hideClass: {
             popup: "animate__animated animate__fadeOutUp",
           },
-          confirmButtonText: 'Volver',
-          background: 'var(--cadet-blue)',
-          color: 'white',
-          customClass:{
-              confirmButton: 'btn btns'
-              
-          }
-        }).then((results)=>{
-            results.isConfirmed? setTimeout(() => {
+          confirmButtonText: "Volver",
+          background: "var(--cadet-blue)",
+          color: "white",
+          customClass: {
+            confirmButton: "btn btns",
+          },
+        }).then((results) => {
+          results.isConfirmed
+            ? setTimeout(() => {
                 navigate("/");
-              }, 3000): setTimeout(() => {
+              }, 3000)
+            : setTimeout(() => {
                 navigate("/");
-              }, 10000)
-
+              }, 10000);
         });
-        
       }
     } catch (error) {
       console.log(error);
@@ -117,14 +119,14 @@ const UserProvider = ({ children }) => {
     const logged = jwt_decode(data);
     return logged;
   };
-   
+
   const getUsers = async () => {
     const { data } = await axiosClient.get("users/list");
     setUsers(data.users);
   };
   useEffect(() => {
-    getUsers()
-    
+    getUsers();
+
     try {
       getUsers();
     } catch (error) {
@@ -132,98 +134,78 @@ const UserProvider = ({ children }) => {
     }
   }, []);
 
-  
-  
+  const handleFilterUsers = (e) => {
+    if (users.some((user) => user.rol === e.target.id)) {
+      const userFilter = users.filter((usuario) => usuario.rol === e.target.id);
+      setUsers(userFilter);
+    } else {
+      const newFilter = async () => {
+        const { data } = await axiosClient.get("users/list");
+        const userFilter = data.users.filter(
+          (usuario) => usuario.rol === e.target.id
+        );
+        setUsers(userFilter);
+      };
+      newFilter();
+    }
+  };
 
-  const handleFilterUsers =  (e) => {
-    if(users.some(user => user.rol === e.target.id)){
-      
-    
-    ;
-    const userFilter = users.filter(
-      (usuario) => usuario.rol === e.target.id
-    );
-     setUsers(userFilter)
-  
-   }else{
-     const newFilter = async () =>{
-       const {data} = await axiosClient.get("users/list");
-     const userFilter = data.users.filter(
-      (usuario) => usuario.rol === e.target.id
-    );
-     setUsers(userFilter)
-   }
-   newFilter()
-  }};
-
-  const handleSearchBar = async (e)=>{
-    const {data} = await axiosClient.get("users/list");
+  const handleSearchBar = async (e) => {
+    const { data } = await axiosClient.get("users/list");
     setSearch(e.target.value);
-    setUsers(data.users)
+    setUsers(data.users);
+  };
+  const handleDeleteUser = (e) => {
     
-    
-
-
-  }
-  const handleDeleteUser =  (e)=>{
-      getAuth();
-      try {
-
-        DeleteSwal.fire({
-          icon: 'warning',
-          title: `Esta seguro de eliminar al usuario?`,
-          
-          hideClass: {
-            popup: "animate__flipOutX",
-          },
-          confirmButtonText: 'Eliminar',
-          confirmButtonAriaLabel:'El usuario ha sido eliminado',
-          showCancelButton: true,
-          cancelButtonText: 'Cancelar',
-          background: 'var(--platinum)',
-          color: 'var(--skobeloff)',
-          customClass:{
-              confirmButton: 'btn btns'
-              
-          },
-          focusCancel: true,
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          allowEnterKey: false,
-        }).then(async (resulst)  =>{
-          if(resulst.isConfirmed === true){
-            const userId = e.target.id ;
-            const response = await axiosClient.delete(`users/delete/${userId}`)
-            setDeleted(response.data);
-          if(deleted.ok === true){
-            DeleteSwal.fire({icon: 'succes', title:'Eliminado con exito',background: 'var(--platinum)',color: 'var(--skobeloff)',confirmButtonText:'volver', customClass:{
-              confirmButton: 'btn btns'}
-              
-          })
-          getUsers()
-          }
-
+    try {
+      DeleteSwal.fire({
+        icon: "warning",
+        title: `Esta seguro de eliminar al usuario?`,
+        showClass:{
+          popup: "animate__fadeIn"
+        },
+        hideClass: {
+          popup: "animate__flipOutX",
+        },
+        confirmButtonText: "Eliminar",
+        confirmButtonAriaLabel: "El usuario ha sido eliminado",
+        showCancelButton: true,
+        cancelButtonText: "Cancelar",
+        background: "var(--platinum)",
+        color: "var(--skobeloff)",
+        customClass: {
+          confirmButton: "btn btns",
+        },
+        focusCancel: true,
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        allowEnterKey: false,
+      }).then(async (resulst) => {
+        if (resulst.isConfirmed === true) {
+          const userId = e.target.id;
+          const response = await axiosClient.delete(`users/delete/${userId}`);
+          setDeleted(response.data);
+          console.log(deleted);
+          if (deleted.ok === true) {
+            SwalSucces.fire({
+              icon: "succes",
+              title: "Eliminado con exito",
+              background: "var(--platinum)",
+              color: "var(--skobeloff)",
+              confirmButtonText: "volver",
+              customClass: {
+                confirmButton: "btn btns",
+              },
+            });
+            getUsers();
+          } 
         }
-        })
-
-        
-                
-      }catch (error) {
-        console.log(error);
-        
-
-        
-      
-      }
-
-      
-
-  }
-
-  
-    
-  
-
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  console.log(deleted);
   return (
     <UserContext.Provider
       value={{
@@ -241,7 +223,7 @@ const UserProvider = ({ children }) => {
         handleSearchBar,
         search,
         setSearch,
-        handleDeleteUser
+        handleDeleteUser,
       }}
     >
       {children}
@@ -249,4 +231,4 @@ const UserProvider = ({ children }) => {
   );
 };
 
-export default UserProvider
+export default UserProvider;
