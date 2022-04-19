@@ -35,7 +35,7 @@ export const validationRegister = values => {
   
     if (!values.confirmPassword) {
       errors.confirmPassword = 'Este campo es obligatorio'
-    } else if (values.confirmPassword!=values.password) {
+    } else if (values.confirmPassword!==values.password) {
       errors.confirmPassword = 'Las contraseñas no coinciden'
     }
     return errors;

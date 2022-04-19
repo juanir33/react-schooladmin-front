@@ -6,28 +6,24 @@ import { values_register } from "../../constants/index"
 import Alert from "@mui/material/Alert"
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../context/UserContext"
-
+import "../LoginForm/LoginForm.css"
 const Register = () => {
 
     const {registerUser, auth} = useContext(UserContext);
     const navigate = useNavigate();
-    useEffect(() =>{
-        if(auth){
-            navigate('/home')
-        }
-    },[auth])
+    
 
-    const {handleKeyUp, handleSubmit, value, errors} = useForm(values_register, registerUser, validationRegister);
-{
+    const {handleKeyUp, handleSubmit, value, errors, } = useForm(values_register, registerUser, validationRegister);
+    
 
-}
+
     return (
-        <div className="text-center">
-                <div className="container">
+        <div classNameName="text-center">
+                <div classNameName="container">
                     <div className="row">
                         <div className="col-sm-9 col-md-7 col-lg-5 mx-auto">
                             <div className="card border-0 shadow rounded-3 my-5">
-                                <div className="card-body-login p-4 p-sm-5">
+                                <div className=" card-body card-body-login p-4 p-sm-5">
                                     <h4 className="card-title text-center mb-4 fw-light fs-5"><strong>CREA TU CUENTA</strong></h4>
                                     <form onSubmit={handleSubmit}>
                                     <div className="form-floating mb-3">
@@ -50,10 +46,10 @@ const Register = () => {
                                         <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="confirmPassword" onKeyUp={handleKeyUp}/>
                                                 <label for="floatingPassword">Confirma tu contraseña</label>
                                         </div>
-                                        <div className="d-grid">
-                                            <button className="btn btn-primary btn-login text-uppercase fw-bold" type="submit">REGISTRARSE</button>
+                                        <div classNameName="d-grid">
+                                            <button className="btn btns p-2 text-uppercase fw-bold " type="submit">REGISTRARSE</button>
                                             {Object.keys(errors).length===0?null:
-                                        Object.values(errors).map((error,index)=><Alert severity="error" className="mt-3" key={index}>{error}</Alert>)}
+                                        Object.values(errors).map((error,index)=><Alert severity="error" classNameName="mt-3" key={index}>{error}</Alert>)}
                                        
                                         </div>
                                     </form>
