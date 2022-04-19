@@ -13,7 +13,6 @@ export const alumno = [
     new sideL("list-ol", "/grados", "Grados"),
   
     new sideL("pen-alt", "/notas", "Notas"),
-    new sideL("hand-paper", "/asistencias", "Asistencias"),
   ];
   export const admin= [
     new sideL("home", "/", "Panel"),
@@ -23,7 +22,6 @@ export const alumno = [
     new sideL("list-ol", "/grados", "Grados"),
     new sideL("user-clock", "/preceptores", "Preceptores"),
     new sideL("pen-alt", "/notas", "Notas"),
-    new sideL("hand-paper", "/asistencias", "Asistencias"),
     new sideL("chart-line", "/reportes", "Reportes"),
   ];
   

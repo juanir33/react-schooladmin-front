@@ -9,10 +9,7 @@ import TablesMaterias from '../components/Tables/TableMaterias'
 function Alumnos() {
 
   return (
-    
-
     <div className="container w-75 d-flex justify-content-center">
-        
         <Cards titulo='Materia' texto='notas varias notas' boton='imprimir' />
         <Cards titulo='Materia' texto='notas varias notas' boton='imprimir' />
         <Cards titulo='Materia' texto='notas varias notas' boton='imprimir' />

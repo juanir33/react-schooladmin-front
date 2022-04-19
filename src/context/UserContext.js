@@ -17,6 +17,7 @@ const UserProvider = ({ children }) => {
   const [users, setUsers] = useState([]);
   const [search, setSearch] = useState([]);
   const [deleted, setDeleted] = useState([]);
+  const [mat, setMat] = useState([]);
   const navigate = useNavigate();
   const SuccesSwal = withReactContent(Swal);
   const DeleteSwal = withReactContent(Swal);
@@ -134,6 +135,13 @@ const UserProvider = ({ children }) => {
     }
   }, []);
 
+  const getMaterias = async () => {
+      getAuth();
+    const { data } = await axiosClient.get("/materias");
+    setMat(data.materias);
+    console.log(setMat);
+  };
+  
   const handleFilterUsers = (e) => {
     if (users.some((user) => user.rol === e.target.id)) {
       const userFilter = users.filter((usuario) => usuario.rol === e.target.id);
@@ -228,7 +236,12 @@ const UserProvider = ({ children }) => {
         search,
         setSearch,
         handleDeleteUser,
+
+        getMaterias
+        
+
        
+
       }}
     >
       {children}

@@ -5,10 +5,7 @@ import MateriasCard from '../components/Cards/MateriasCards'
 
 const Materias = () => {
   return (
-     
      <MateriasCard/>
-    
-    
   )
 }
 

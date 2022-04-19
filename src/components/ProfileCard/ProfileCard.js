@@ -10,9 +10,9 @@ import {
   FaWhatsapp,
   FaPhoneSquareAlt,
   FaEnvelopeOpenText,
-  FaSchool,
   FaMapMarked,
   FaTrashAlt,
+  FaSchool,
   
 } from "react-icons/fa";
 import {GiShieldDisabled} from 'react-icons/gi'
