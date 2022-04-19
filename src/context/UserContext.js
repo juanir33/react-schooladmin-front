@@ -1,109 +1,208 @@
-
 import { createContext, useEffect, useState } from "react";
 import axiosClient from "../config/axiosClient";
-import jwt_decode from 'jwt-decode'
-import { Alert, Button, Toast } from "react-bootstrap";
-import { Navigate } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+
+import { useNavigate } from "react-router-dom";
+
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+import 'animate.css';
 
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null);
-    const [auth, setAuth] = useState(false);
-    const [token, setToken] = useState(null);
+  const [user, setUser] = useState(null);
+  const [auth, setAuth] = useState(false);
+  const [token, setToken] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [search, setSearch] = useState([]);
+  const navigate = useNavigate();
+  const SuccesSwal = withReactContent(Swal);
 
-
-    const loginUser = async (values) => {
-        try {
-            const { data } = await axiosClient.post("/auth/login", values);
-            setToken(data.token);
-            setAuth(true)
-            localStorage.setItem('token', data.token)
-        } catch (error) {
-            console.log(error);
-            setAuth(false);
-            if (localStorage.getItem('token')) {
-                localStorage.removeItem('token');
-            }
-        }
+  const loginUser = async (values) => {
+    try {
+      const { data } = await axiosClient.post("/auth/login", values);
+      setToken(data.token);
+      setAuth(true);
+      localStorage.setItem("token", data.token);
+    } catch (error) {
+      console.log(error);
+      setAuth(false);
+      if (localStorage.getItem("token")) {
+        localStorage.removeItem("token");
+      }
     }
+  };
 
+  const registerUser = async (values) => {
+    try {
+      const dataTransform = {
+        email: values.email,
+        password: values.password,
+        profile: {
+          nombre: values.name,
+          apellido: values.lastname,
+        },
+      };
+      const { data } = await axiosClient.post("/auth/register", dataTransform);
+      console.log(data);
+      if (data.ok === true) {
+        SuccesSwal.fire({
+          title: "Registro exitoso, se te ha enviado un e-mail de confirmacion. Para ingresar al sitio debes ser habilitado por el Administrador",
+          showClass: {
+            popup: "animate__animated animate__fadeInDown",
+          },
+          hideClass: {
+            popup: "animate__animated animate__fadeOutUp",
+          },
+          confirmButtonText: 'Volver',
+          background: 'var(--cadet-blue)',
+          color: 'white',
+          customClass:{
+              confirmButton: 'btn btns'
+              
+          }
+        }).then((results)=>{
+            results.isConfirmed? setTimeout(() => {
+                navigate("/");
+              }, 3000): setTimeout(() => {
+                navigate("/");
+              }, 10000)
 
-    const registerUser = async (values) => {
+        });
         
-        try {
-            const dataTransform = {
-                email: values.email,
-                password: values.password,
-                profile:{
-                    nombre: values.name,
-                    apellido: values.lastname
-
-                }
-            }
-            const {status} = await axiosClient.post("/auth/register", dataTransform);
-            console.log(status);
-            
-               
-                  Navigate("/")
-                
-            
-
-        } catch (error) {
-            console.log(error);
-            setAuth(false);
-            if (localStorage.getItem('token')) {
-                localStorage.removeItem('token');
-            }
-        }
+      }
+    } catch (error) {
+      console.log(error);
+      setAuth(false);
+      if (localStorage.getItem("token")) {
+        localStorage.removeItem("token");
+      }
     }
+  };
 
-
-
-    const getAuth = async () => {
-        const token = localStorage.getItem('token');
-        if (token) {
-            axiosClient.defaults.headers.common['token'] = token;
-        } else {
-            delete axiosClient.defaults.headers.common['token']
-        }
-        try {
-            const response = await axiosClient.get('/users/list');
-            setAuth(true);
-            setUser(response.data.user);
-            setToken(response.data.token);
-        } catch (error) {
-            console.log(error)
-            setAuth(false);
-            setUser(null);
-            setToken(null);
-            if (localStorage.getItem('token')) {
-                localStorage.removeItem('token')
-            }
-        }
-
+  const getAuth = async () => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      axiosClient.defaults.headers.common["token"] = token;
+    } else {
+      delete axiosClient.defaults.headers.common["token"];
     }
-    const logOut = () => {
-        setAuth(false);
-        setToken(null);
-        setUser(null);
-        localStorage.removeItem('token');
-
+    try {
+      const response = await axiosClient.get("/users/list");
+      setAuth(true);
+      setUser(response.data.user);
+      setToken(response.data.token);
+    } catch (error) {
+      console.log(error);
+      setAuth(false);
+      setUser(null);
+      setToken(null);
+      if (localStorage.getItem("token")) {
+        localStorage.removeItem("token");
+      }
     }
+  };
+  const logOut = () => {
+    setAuth(false);
+    setToken(null);
+    setUser(null);
+    localStorage.removeItem("token");
+  };
 
-    const decoder = () => {
-        const data = localStorage.getItem('token');
-        const logged = jwt_decode(data)
-        return logged
-    };
+  const decoder = () => {
+    const data = localStorage.getItem("token");
+    const logged = jwt_decode(data);
+    return logged;
+  };
+   
+  const getUsers = async () => {
+    const { data } = await axiosClient.get("users/list");
+    setUsers(data.users);
+  };
+  useEffect(() => {
+    getUsers()
+    
+    try {
+      getUsers();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  
+  
+
+  const handleFilterUsers =  (e) => {
+    if(users.some(user => user.rol === e.target.id)){
+      
+    
+    ;
+    const userFilter = users.filter(
+      (usuario) => usuario.rol === e.target.id
+    );
+     setUsers(userFilter)
+  
+   }else{
+     const newFilter = async () =>{
+       const {data} = await axiosClient.get("users/list");
+     const userFilter = data.users.filter(
+      (usuario) => usuario.rol === e.target.id
+    );
+     setUsers(userFilter)
+   }
+   newFilter()
+  }};
+
+  const handleSearchBar = async (e)=>{
+    const {data} = await axiosClient.get("users/list");
+    setSearch(e.target.value);
+    setUsers(data.users)
+    
+    
 
 
-    return (
-        <UserContext.Provider value={{ user, setUser, loginUser, registerUser, auth, getAuth, logOut, decoder}}>
-            {children}
-        </UserContext.Provider>
-    )
-}
+  }
+  const handleDeleteUser = async (e)=>{
+      getAuth();
+      const userId = e.target.id 
+      const response = await axiosClient.delete(`users/delete/${userId}`);
+      console.log(response);
+      if(response.data.ok === true){
+        getUsers()
+      }
 
+      
+
+  }
+
+  
+    
+  
+
+  return (
+    <UserContext.Provider
+      value={{
+        user,
+        setUser,
+        loginUser,
+        registerUser,
+        auth,
+        getAuth,
+        logOut,
+        decoder,
+        setUsers,
+        users,
+        handleFilterUsers,
+        handleSearchBar,
+        search,
+        setSearch,
+        handleDeleteUser
+      }}
+    >
+      {children}
+    </UserContext.Provider>
+  );
+};
 
 export default UserProvider

@@ -7,7 +7,9 @@ import Alert from "@mui/material/Alert"
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../context/UserContext"
 import "../LoginForm/LoginForm.css"
-const Register = () => {
+
+
+const Register = ({children}) => {
 
     const {registerUser, auth} = useContext(UserContext);
     const navigate = useNavigate();
@@ -46,19 +48,23 @@ const Register = () => {
                                         <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="confirmPassword" onKeyUp={handleKeyUp}/>
                                                 <label for="floatingPassword">Confirma tu contraseña</label>
                                         </div>
-                                        <div classNameName="d-grid">
+                                        <div className="d-grid">
                                             <button className="btn btns p-2 text-uppercase fw-bold " type="submit">REGISTRARSE</button>
                                             {Object.keys(errors).length===0?null:
                                         Object.values(errors).map((error,index)=><Alert severity="error" classNameName="mt-3" key={index}>{error}</Alert>)}
                                        
                                         </div>
+                                        
                                     </form>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+                {children}
         </div>
+        
     )
 }
 

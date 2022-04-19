@@ -1,0 +1,9 @@
+.search-container{
+    border-bottom: 2px solid var(--skobeloff) ;
+    border-radius: 5px;
+    background-color: var(--skobeloff);
+    box-shadow: -17px 11px 35px -4px rgba(45,127,131,0.55);
+-webkit-box-shadow: -17px 11px 35px -4px rgba(45,127,131,0.55);
+-moz-box-shadow: -17px 11px 35px -4px rgba(45,127,131,0.55);
+ 
+}
