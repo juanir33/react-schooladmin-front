@@ -1,5 +1,5 @@
 
-import UserProfile from "../components/UserProfile";
+import UserProfile from "../components/UserProfile/UserProfile";
 
 const token = localStorage.getItem('token')
 console.log(token);

@@ -4,10 +4,10 @@
 import React, { useContext, useState } from 'react'
 import { Tabs , Tab, Container, Row, Col, InputGroup, Form, FormControl, Button} from 'react-bootstrap';
 import { FaAddressCard, FaNapster, FaPhoneAlt, FaWhatsapp } from 'react-icons/fa';
-import axiosClient from '../config/axiosClient';
-import { UserContext } from '../context/UserContext';
-import useForm from '../hooks/useForm';
-import Cards from './Cards/Cards';
+import axiosClient from '../../config/axiosClient';
+import { UserContext } from '../../context/UserContext';
+import useForm from '../../hooks/useForm';
+import Cards from '../Cards/Cards';
 
 
 
