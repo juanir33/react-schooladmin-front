@@ -1,21 +1,22 @@
 
-import {useNavigate } from "react-router-dom"
+
 import { validationRegister } from "../../helpers/validationRegister"
 import useForm from "../../hooks/useForm"
 import { values_register } from "../../constants/index"
 import Alert from "@mui/material/Alert"
-import { useContext, useEffect } from "react"
+import { Rating } from "@mui/material"
+import { useContext,  } from "react"
 import { UserContext } from "../../context/UserContext"
 import "../LoginForm/LoginForm.css"
 
 
 const Register = ({children}) => {
 
-    const {registerUser, auth} = useContext(UserContext);
-    const navigate = useNavigate();
+    const {registerUser,} = useContext(UserContext);
+   
     
 
-    const {handleKeyUp, handleSubmit, value, errors, } = 
+    const {handleKeyUp, handleSubmit, errors, handleBlur, values } = 
     useForm(values_register, registerUser, validationRegister);
     
 
@@ -30,29 +31,29 @@ const Register = ({children}) => {
                                     <h4 className="card-title text-center mb-4 fw-light fs-5"><strong>CREA TU CUENTA</strong></h4>
                                     <form onSubmit={handleSubmit}>
                                     <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="floatingInput" placeholder="Nombre" name="name" onKeyUp={handleKeyUp} />
-                                                <label for="floatingInput" >Nombre</label> 
+                                            <input type="text" className='form-control' id="floatingInput" placeholder="Nombre" name="name" onChange={handleKeyUp} onBlur={handleBlur} />
+                                                <label for="floatingInput" >Nombre</label>  { values.name.touch && errors.name && <Alert severity="error"  variant="filled"  className="m-1 p-0" >{errors.name}</Alert>}
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="text" className="form-control" id="floatingInput" placeholder="Apellido" name="lastname" onKeyUp={handleKeyUp}/>
+                                            <input type="text" className='form-control ' formNoValidate id="floatingInput" placeholder="Apellido" name="lastname" onBlur={handleBlur} onChange={handleKeyUp}/>
                                                 <label for="floatingInput">Apellido</label>
+                                                {values.lastname.touch && errors.lastname && <Alert severity="error"  variant="filled"  className="m-1 p-0" >{errors.lastname}</Alert>}
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp}/>
-                                                <label for="floatingInput">Email</label>
+                                            <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp} onBlur={handleBlur}/>
+                                                <label for="floatingInput">Email</label>{values.email.touch &&errors.email && <Alert severity="error"  variant="filled"  className="m-1 p-0" >{errors.email}</Alert>}
                                         </div>
                                         <div className="form-floating  mb-3">
-                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp}/>
-                                                <label for="floatingPassword">Contraseña</label>
+                                        <input type="text" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onChange={handleKeyUp} onBlur={handleBlur}/>
+                                                <label for="floatingPassword">Contraseña</label>{values.password.touch &&errors.password && <Alert severity="error"  variant="filled"  className="m-1 p-0" >{errors.password}</Alert>}
                                         </div>
                                         <div className="form-floating  mb-3">
-                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="confirmPassword" onKeyUp={handleKeyUp}/>
-                                                <label for="floatingPassword">Confirma tu contraseña</label>
+                                        <input type="text" className='form-control ' id="floatingPassword" placeholder="Contraseña" name="confirmPassword" onChange={handleKeyUp} onBlur={handleBlur}/>
+                                                <label for="floatingPassword">Confirma tu contraseña</label>{values.confirmPassword.touch &&errors.confirmPassword && <Alert severity="error"  variant="filled"  className="m-1 " >{errors.confirmPassword}</Alert>}
                                         </div>
                                         <div className="d-grid">
                                             <button className="btn btns p-2 text-uppercase fw-bold " type="submit">REGISTRARSE</button>
-                                            {Object.keys(errors).length===0?null:
-                                        Object.values(errors).map((error,index)=><Alert severity="error" classNameName="mt-3" key={index}>{error}</Alert>)}
+                                            
                                        
                                         </div>
                                         

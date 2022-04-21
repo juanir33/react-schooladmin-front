@@ -26,7 +26,13 @@ const UserProvider = ({ children }) => {
 
   const loginUser = async (values) => {
     try {
-      const { data } = await axiosClient.post("/auth/login", values);
+      const bodyTransform = {
+        email: values.email.value,
+        password: values.password.value,
+
+      }
+      console.log(bodyTransform);
+      const { data } = await axiosClient.post("/auth/login", bodyTransform);
       setToken(data.token);
       setAuth(true);
       localStorage.setItem("token", data.token);
@@ -42,11 +48,11 @@ const UserProvider = ({ children }) => {
   const registerUser = async (values) => {
     try {
       const dataTransform = {
-        email: values.email,
-        password: values.password,
+        email: values.email.value,
+        password: values.password.value,
         profile: {
-          nombre: values.name,
-          apellido: values.lastname,
+          nombre: values.name.value,
+          apellido: values.lastname.value,
         },
       };
       const { data } = await axiosClient.post("/auth/register", dataTransform);

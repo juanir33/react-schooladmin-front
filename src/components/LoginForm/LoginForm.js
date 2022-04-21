@@ -7,6 +7,7 @@ import Alert from "@mui/material/Alert"
 import { useContext, useEffect } from "react"
 import { UserContext } from "../../context/UserContext"
 import "./LoginForm.css"
+import {Navbar} from '../Navbar/Navbar'
 
 const LoginForm = () => {
 
@@ -18,10 +19,11 @@ const LoginForm = () => {
         }
     },[auth])
 
-    const {handleKeyUp, handleSubmit, value, errors} = useForm(values_login, loginUser, validationLogin);
+    const {handleKeyUp, handleSubmit, values, errors, handleBlur} = useForm(values_login, loginUser, validationLogin);
     
     
      return (
+         
         <div className="text-center ">
                 <div className="container">
                     <div className="row cards">
@@ -31,17 +33,18 @@ const LoginForm = () => {
                                     <h5 className="card-title text-center mb-5 fw-light fs-5"><strong>INICIAR SESION</strong></h5>
                                     <form onSubmit={handleSubmit}>
                                         <div className="form-floating mb-3">
-                                            <Form.Control type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp}/>
+                                            <Form.Control type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp} onBlur={handleBlur} />
                                                 <label for="floatingInput">Email</label>
+                                                {values.email.touch && errors.email && <Alert severity="error" variant="filled" className="mt-3" >{errors.email}</Alert>}
                                         </div>
                                         <div className="form-floating mb-3">
-                                            <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp}/>
+                                            <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp} onBlur={handleBlur}/>
                                                 <label for="floatingPassword">Contraseña</label>
+                                                {values.password.touch && errors.password && <Alert severity="error" variant="filled" className="mt-3" >{errors.email}</Alert>}
                                         </div>
                                         <div className="d-grid">
                                             <button className="btn btns text-uppercase fw-bold" type="submit">Entrar</button>
-                                        {Object.keys(errors).length===0?null:
-                                        Object.values(errors).map((error,index)=><Alert severity="error" className="mt-3" key={index}>{error}</Alert>)}
+                                        
                                         </div>
                                         <hr className="my-4"/>
                                             <div className="d-grid mb-2">
