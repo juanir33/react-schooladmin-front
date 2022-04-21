@@ -11,3 +11,6 @@ export const values_register = {
     confirmPassword:{value: '', touch: false},
     
 }
+export const values_search = {
+    search: {value: '', touch: false}
+}

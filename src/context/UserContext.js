@@ -24,6 +24,8 @@ const UserProvider = ({ children }) => {
   const SwalSucces = withReactContent(Swal);
   const SwalError = withReactContent(Swal);
 
+
+  //Manejo del login
   const loginUser = async (values) => {
     try {
       const bodyTransform = {
@@ -44,7 +46,7 @@ const UserProvider = ({ children }) => {
       }
     }
   };
-
+ //Manejo de registro de usuarios
   const registerUser = async (values) => {
     try {
       const dataTransform = {
@@ -91,7 +93,7 @@ const UserProvider = ({ children }) => {
       }
     }
   };
-
+  //Obtenemos la verificacion del usuario y setea el token en la request headers
   const getAuth = async () => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -120,13 +122,14 @@ const UserProvider = ({ children }) => {
     setUser(null);
     localStorage.removeItem("token");
   };
-
+  //Decodificamos el token jwt para obtener datos de usuario logeado y mostrar en componentes 
   const decoder = () => {
     const data = localStorage.getItem("token");
     const logged = jwt_decode(data);
     return logged;
   };
-
+  
+  //Listado de todos los usuarios registrados
   const getUsers = async () => {
     const { data } = await axiosClient.get("users/list");
     setUsers(data.users);
@@ -140,7 +143,8 @@ const UserProvider = ({ children }) => {
       console.log(error);
     }
   }, []);
-
+ 
+  //listado de materias
   const getMaterias = async () => {
       getAuth();
     const { data } = await axiosClient.get("/materias");
@@ -148,6 +152,7 @@ const UserProvider = ({ children }) => {
     console.log(setMat);
   };
   
+  //Filtro de usuarios por su Rol
   const handleFilterUsers = (e) => {
     if (users.some((user) => user.rol === e.target.id)) {
       const userFilter = users.filter((usuario) => usuario.rol === e.target.id);
@@ -163,12 +168,16 @@ const UserProvider = ({ children }) => {
       newFilter();
     }
   };
-
+  
+  //Para buscar usuarios por nombre o apellido
   const handleSearchBar = async (e) => {
+    
     const { data } = await axiosClient.get("users/list");
     setSearch(e.target.value);
     setUsers(data.users);
   };
+
+  //Borrado de usuarios, solo por el Admin
   const handleDeleteUser = (e) => {
      getAuth();
     
@@ -243,6 +252,7 @@ const UserProvider = ({ children }) => {
         search,
         setSearch,
         handleDeleteUser,
+        getUsers,
 
         getMaterias
         

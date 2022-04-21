@@ -42,7 +42,7 @@ const useForm = (initialState,submit, validate ) => {
 
 
   };
-  let touched = false 
+  
  const handleBlur= (e)=>{
   if(validate){
     setErrors(validate(values));

@@ -1,20 +1,73 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Button, Col,  FormControl, InputGroup } from "react-bootstrap";
 import { FaSearch } from "react-icons/fa";
-
+import {validationSearch} from '../../helpers/validationSearch'
 import { UserContext } from "../../context/UserContext";
 import "./SearchBar.css";
 
+import { values_search } from "../../constants";
+import axiosClient from "../../config/axiosClient";
+import { Alert, Snackbar } from "@mui/material";
+
 const SearchBar = () => {
  
-  const { handleFilterUsers, handleSearchBar, search, users, setUsers} = useContext(UserContext);
+  const { handleFilterUsers, getUsers, setUsers, getAuth} = useContext(UserContext);
+  const [errors, setErrors] = useState({});
+  const [values, setValues] = useState(values_search)
+  const validate = validationSearch;
   
+  
+  const handleChangeSearch = (e)=>{ 
+    getUsers();
+    if(validationSearch){
 
-  const handleSubmitSearch = (e)=>{
+      setErrors(validationSearch(values))
+
+
+    }else{setErrors({});}
+    setValues({
+      ...values,
+      [e.target.name]:{
+        value: e.target.value
+      }
+
+    })
+    console.log(values, errors);
+  }
+   
+  const handleBlurSearch = (e)=>{
+    if(validate){
+
+      setErrors(validate(values))
+
+
+    }else{setErrors({})}
+    setValues({
+      ...values,
+      [e.target.name]:{
+        value: e.target.value,
+        touch: true
+      }
+    })
+    console.log(errors, values);
+  };
+
+   
+
+  const handleSubmitSearch = async (e)=>{
+
       e.preventDefault()
-      const filter = users.filter(user => (user.profile.nombre.toLowerCase() === search.toLowerCase() || user.profile.apellido.toLowerCase() === search.toLowerCase()) )
+      getAuth();
+
+      if(Object.keys(errors).length === 0){
+      const {data} = await axiosClient.get('users/list')
+      const filter = data.users.filter(user => (user.profile.nombre.toLowerCase() === values.search.value.toLowerCase() || user.profile.apellido.toLowerCase() === values.search.value.toLowerCase()) )
+      if(filter.length === 0){
+      
+        alert('no hay usuario')
+      }
       setUsers(filter)
-      console.log(filter);
+      console.log(filter);}
   }
 
   
@@ -39,8 +92,10 @@ const SearchBar = () => {
               placeholder="Buscar un usuario"
               aria-label="Buscar un usuario"
               aria-describedby="lupa"
-              name="lupa"
-              onKeyUp={handleSearchBar}
+              name="search"
+              onKeyUp={handleChangeSearch}
+              onBlur={handleBlurSearch}
+              
             ></FormControl>
             <InputGroup.Text id="lupa">
               <Button className="btn-lupa btns-light" onClick={handleSubmitSearch}>
@@ -48,6 +103,11 @@ const SearchBar = () => {
               </Button>
             </InputGroup.Text>
           </InputGroup>
+          {values.search.touch && errors.search && <Snackbar anchorOrigin={ {vertical: 'top', horizontal: 'center' }} open = {true} autoHideDuration={3000} >
+  <Alert  severity="error" sx={{ width: '100%' }}>
+    {errors.search}
+  </Alert>
+</Snackbar>}
         </Col>
       </div>
     </>
