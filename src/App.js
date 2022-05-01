@@ -12,6 +12,7 @@ import Profesores from './pages/Profesores';
 import ProfileCard from './components/ProfileCard/ProfileCard';
 import MateriasCards from './components/Cards/MateriasCards';
 import LoginForm from './components/LoginForm/LoginForm.css';
+import './components/LoginForm/LoginFormS.scss';
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
 import AddUsers from './components/AddUsers/AddUsers';
