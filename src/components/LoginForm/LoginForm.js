@@ -45,20 +45,22 @@ const LoginForm = () => {
                                 <div className=" form-groupnpo mb-4">
                                     <label for="password" className=" sr-only">Password</label>
                                     <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp} />
+                                    {Object.keys(errors).length === 0 ? null :
+                                        Object.values(errors).map((error, index) => <Alert severity="error" key={index}>{error}</Alert>)}
                                 </div>
                                 <div>
-                                    <input name="login" id="login" className=" btn btn-block login-btn mb-4" type="submit" />
-                                    {Object.keys(errors).length === 0 ? null :
-                                        Object.values(errors).map((error, index) => <Alert severity="error" className="mt-3" key={index}>{error}</Alert>)}
+                                    <input name="login" id="login" className=" btn btn-block login-btn mb-4" type="submit" value="Entrar" />
+                                    <p className=" login-card-footer-text">No tienes cuenta? <Link to="/register" >Registrate aqui</Link></p>
+                                   
                                 </div>
                             </form>
-                            <p className=" login-card-footer-text">No tienes cuenta? <Link to="/register" >Registrate aqui</Link></p>
+                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
         </div>
-    )
+    ) 
 }
 export default LoginForm
