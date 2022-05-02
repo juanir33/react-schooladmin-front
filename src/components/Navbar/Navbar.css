@@ -34,4 +34,6 @@
 #user-a{
     color: var(--teal);
     font-weight: 800;
+    background: none ;
+    border: none;
 }

@@ -21,13 +21,11 @@ import "./Sidebar.css";
 //habria que guardarlo como [] a dicho rol o buscar la solucion al problema
 
 const Sidebar = () => {
-  const { decoder, logOut } = useContext(UserContext);
+  const { decoder } = useContext(UserContext);
 
   const userLog = decoder();
 
-  const handleLogOut = () => {
-    localStorage.clear();
-  };
+  
 
   const linksRol = sideLs.filter(
     (item) => item.role.includes(userLog.rol) === true
@@ -68,19 +66,18 @@ const Sidebar = () => {
           <CDBSidebarMenu>{links}</CDBSidebarMenu>
         </CDBSidebarContent>
 
-        <CDBSidebarFooter>
+        {/* <CDBSidebarFooter>
           <div>
-            <NavLink onClick={logOut} className="foot nav-link">
+            <button onClick={handleLogOut} className="foot nav-link">
               <CDBSidebarMenuItem className="item" icon="sign-out-alt">
                 Logout
               </CDBSidebarMenuItem>
-            </NavLink>
+            </button>
           </div>
-        </CDBSidebarFooter>
+        </CDBSidebarFooter> */}
       </CDBSidebar>
     </div>
   );
 };
-
 
 export default Sidebar;

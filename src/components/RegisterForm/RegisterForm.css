@@ -80,3 +80,11 @@ body {
   
   /*# sourceMappingURL=login.css.map */
   
+.invalid{
+    border: 1px solid blueviolet !important;
+    box-shadow: blueviolet;
+
+}
+.valido{
+    border: 2px solid greenyellow;
+}

@@ -1,16 +1,16 @@
 export const values_login = {
-    email:'',
-    password:'',
+    email:{value: '', touch: false},
+    password:{value: '', touch: false},
 }
 
 export const values_register = {
-    profile: {
-        nombre:'',
-        apellido:'',
-        domicilio:''
-
-    },
-    email:'',
-    password:'',
-    confirmPassword:''
+    name:{value: '', touch: false},
+    lastname:{value: '', touch: false},
+    email:{value: '', touch: false},
+    password:{value: '', touch: false},
+    confirmPassword:{value: '', touch: false},
+    
+}
+export const values_search = {
+    search: {value: '', touch: false}
 }

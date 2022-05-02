@@ -20,11 +20,8 @@ const Dashboard = ({children}) => {
       </div>
       <div className="d-flex flex-column w-100 nav">
         <NavBar />
-        <div className="main-content d-flex w-100 justify-content-center flex-wrap">
+        <div className="container main-content d-flex w-100 justify-content-center flex-wrap ">
          {children} 
-        
-        
-        
           
         </div>
         <br />

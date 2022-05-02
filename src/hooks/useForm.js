@@ -5,6 +5,7 @@ const useForm = (initialState,submit, validate ) => {
   const [values, setValues] = useState(initialState);
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
+  
 
   useEffect(() => {
     if(submitting) {
@@ -16,10 +17,18 @@ const useForm = (initialState,submit, validate ) => {
   }, [errors])
   
   const handleKeyUp = (e) => {
+    console.log(e.target.value);
+    if(validate){
+      setErrors(validate(values));
+      
+      
+    }else{setErrors({}) }
     setValues({
       ...values,
-      [e.target.name]: e.target.value
+      [e.target.name]: {value:e.target.value}
     })
+    console.log(values);
+    
   }
 
   const handleSubmit = (e) => {
@@ -30,13 +39,39 @@ const useForm = (initialState,submit, validate ) => {
       setErrors({});
     }
     setSubmitting(true);
+
+
+  };
+  
+ const handleBlur= (e)=>{
+  if(validate){
+    setErrors(validate(values));
+    
+    
   }
+  
+ 
+   setValues({
+     ...values,
+     [e.target.name]:{
+      value:e.target.value,
+      touch: true
+
+     }
+   })
+   }
+   
+ console.log(values)
+ console.log(errors);
+
+ 
 
   return {
     values,
     errors,
     handleKeyUp,
-    handleSubmit
+    handleSubmit,
+    handleBlur
   }
 
 }

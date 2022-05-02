@@ -7,17 +7,21 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ModalProvider from './context/ModalContext';
 import UserProvider from './context/UserContext';
-import ModalNotas from './components/Modals/ModalNotas';
+
 import Profesores from './pages/Profesores';
 import ProfileCard from './components/ProfileCard/ProfileCard';
 import MateriasCards from './components/Cards/MateriasCards';
+<<<<<<< HEAD
 import LoginForm from './components/LoginForm/LoginForm.css';
 import './components/LoginForm/LoginFormS.scss';
+=======
+
+>>>>>>> 7d71929d418cad85d25a63aef36d89b1874a6ce0
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
-import AddUsers from './components/AddUsers/AddUsers';
-import List from './components/List/List';
-import ListaMaterias from './components/Cards/MateriasCards';
+
+import Perfil from './pages/Perfil';
+
 
 
 function App() {
@@ -36,6 +40,7 @@ function App() {
             <Route path="/register" element={<PublicRoute><Register /></PublicRoute>} />
             <Route path="/notas" element={<PrivateRoute><Dashboard children={<Profesores />} /></PrivateRoute>} />
             <Route path="/materias" element={<PrivateRoute><Dashboard children={<MateriasCards />} /></PrivateRoute>} />
+            <Route path="/perfil" element={<PrivateRoute><Dashboard children={<Perfil/>}></Dashboard></PrivateRoute>} />
 
 
           </Routes>

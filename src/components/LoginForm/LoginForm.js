@@ -8,7 +8,8 @@ import { useContext, useEffect } from "react"
 import { UserContext } from "../../context/UserContext"
 import logo from '../../assets/img/logo.png'
 import login from '../../assets/img/login.jpg'
-
+import "./LoginForm.css"
+import { Navbar } from '../Navbar/Navbar'
 
 const LoginForm = () => {
 
@@ -20,47 +21,45 @@ const LoginForm = () => {
         }
     }, [auth])
 
-    const { handleKeyUp, handleSubmit, value, errors } = useForm(values_login, loginUser, validationLogin);
-    {
-    }
+    const { handleKeyUp, handleSubmit, values, errors, handleBlur } = useForm(values_login, loginUser, validationLogin);
     return (
         <div className="d-flex align-items-center min-vh-100 py-3 py-md-0">"
-        <div className=" container">
-            <div className=" card login-card ">
-                <div className=" row no-gutters">
-                    <div className=" col-md-5">
-                        <img src={login} alt="login" class="login-card-img" />
-                    </div>
-                    <div className=" col-md-7">
-                        <div className=" card-body">
-                            <div className=" brand-wrapper">
-                                <img src={logo} alt="logo" className="logo" />
+            <div className=" container">
+                <div className=" card login-card ">
+                    <div className=" row no-gutters">
+                        <div className=" col-md-5">
+                            <img src={login} alt="login" class="login-card-img" />
+                        </div>
+                        <div className=" col-md-7">
+                            <div className=" card-body">
+                                <div className=" brand-wrapper">
+                                    <img src={logo} alt="logo" className="logo" />
+                                </div>
+                                <p className=" login-card-description">INICIAR SESION</p>
+                                <form onSubmit={handleSubmit}>
+                                    <div className=" form-group">
+                                        <label for="email" className=" sr-only">Email</label>
+                                        {values.email.touch && errors.email && <Alert severity="error" variant="filled" className="mt-3" >{errors.email}</Alert>}
+                                        <Form.Control type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp} onBlur={handleBlur} />
+                                    </div>
+                                    <div className=" form-groupnpo mb-4">
+                                        <label for="password" className=" sr-only">Password</label>
+                                        {values.password.touch && errors.password && <Alert severity="error" variant="filled" className="mt-3" >{errors.email}</Alert>}
+                                        <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp} onBlur={handleBlur} />
+                                    </div>
+                                    <div>
+                                        <input name="login" id="login" className=" btn btn-block login-btn mb-4" type="submit" value="Entrar" />
+                                        <p className=" login-card-footer-text">No tienes cuenta? <Link to="/register" >Registrate aqui</Link></p>
+
+                                    </div>
+                                </form>
+
                             </div>
-                            <p className=" login-card-description">INICIAR SESION</p>
-                            <form onSubmit={handleSubmit}>
-                                <div className=" form-group">
-                                    <label for="email" className=" sr-only">Email</label>
-                                    <Form.Control type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp} />
-                                </div>
-                                <div className=" form-groupnpo mb-4">
-                                    <label for="password" className=" sr-only">Password</label>
-                                    <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp} />
-                                    {Object.keys(errors).length === 0 ? null :
-                                        Object.values(errors).map((error, index) => <Alert severity="error" key={index}>{error}</Alert>)}
-                                </div>
-                                <div>
-                                    <input name="login" id="login" className=" btn btn-block login-btn mb-4" type="submit" value="Entrar" />
-                                    <p className=" login-card-footer-text">No tienes cuenta? <Link to="/register" >Registrate aqui</Link></p>
-                                   
-                                </div>
-                            </form>
-                
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        </div>
-    ) 
+    )
 }
 export default LoginForm
