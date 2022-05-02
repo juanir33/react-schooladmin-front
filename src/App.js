@@ -7,19 +7,13 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import ModalProvider from './context/ModalContext';
 import UserProvider from './context/UserContext';
-
 import Profesores from './pages/Profesores';
 import ProfileCard from './components/ProfileCard/ProfileCard';
 import MateriasCards from './components/Cards/MateriasCards';
-<<<<<<< HEAD
 import LoginForm from './components/LoginForm/LoginForm.css';
 import './components/LoginForm/LoginFormS.scss';
-=======
-
->>>>>>> 7d71929d418cad85d25a63aef36d89b1874a6ce0
 import PrivateRoute from './routes/PrivateRoute';
 import PublicRoute from './routes/PublicRoute';
-
 import Perfil from './pages/Perfil';
 
 
