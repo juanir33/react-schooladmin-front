@@ -1,5 +1,5 @@
-import React from "react";
-import { Card, ListGroup, ListGroupItem } from "react-bootstrap";
+import React, { useContext, useEffect, useState } from "react";
+import { Button, Card, ListGroup, ListGroupItem } from "react-bootstrap";
 import {
   RiCalendarTodoFill,
   RiMailFill,
@@ -10,16 +10,67 @@ import {
   FaWhatsapp,
   FaPhoneSquareAlt,
   FaEnvelopeOpenText,
-  FaSchool,
   FaMapMarked,
+  FaTrashAlt,
+  FaSchool,
+  
 } from "react-icons/fa";
+import {GiShieldDisabled} from 'react-icons/gi'
 import "./ProfileCard.css";
-import { user } from "../../helpers/data/users";
-const ProfileCard = () => {
-  const usuarios = JSON.parse(user);
-  console.log(usuarios);
+import { UserContext } from "../../context/UserContext";
 
-  return usuarios.map((usuario) => {
+
+import * as moment from 'moment'
+import SearchBar from "../SearchBar/SearchBar";
+import ModalEditRol from "../Modals/ModalEdit";
+import { ModalContext } from "../../context/ModalContext";
+import axiosClient from "../../config/axiosClient";
+
+
+const ProfileCard = () => {
+  const {users, handleDeleteUser, getAuth , getUsers} = useContext(UserContext);
+  const {handleShowR} = useContext(ModalContext)
+  
+  const habilitarUser = async (e)=>{
+     getAuth();
+     const dataSend = {status: true};
+     const userId = e.target.id;
+     try {
+       const {data} = await axiosClient.post(`users/changerol/${userId}`, dataSend);
+     
+      if(data.ok === true){
+        alert('usuario habilitado');
+        
+      }getUsers();
+     } catch (error) {
+       console.log(error);
+       
+     }
+     
+  } 
+  const disableUser = async (e)=>{
+    getAuth();
+    const dataSend = {status: false};
+    const userId = e.target.id;
+    try {
+      const {data} = await axiosClient.post(`users/changerol/${userId}`, dataSend);
+    console.log(data);
+     if(data.ok === true){
+       alert('usuario deshabilitado')
+     }
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+ } 
+
+  return (
+    <>
+    <ModalEditRol/>
+    <SearchBar/>
+    <div className="d-flex w-100 flex-wrap justify-content-evenly">
+  {users.map((usuario) => {
     return (
       <Card style={{ width: "18rem" }} className="profile-card m-3" >
         <Card.Img variant="top" src="" />
@@ -29,16 +80,17 @@ const ProfileCard = () => {
             className="d-flex w-100 justify-content-center
       "
           >
-            <Card.Text>{usuario.profile.nombre + ' ' + usuario.profile.apellido}</Card.Text>
+            <Card.Text>{usuario.profile ? usuario.profile.apellido + ' ' + usuario.profile.nombre : 'Sin datos'}</Card.Text>
+            
           </div>
         </Card.Body>
         <ListGroup className="list-group-flush ">
           <ListGroupItem className="tool">
             <RiCalendarTodoFill className="mx-2 icon " />{" "}
-            <span className="tiptext">Fecha de Ingreso</span> 20/03/2013
+            <span className="tiptext">Fecha de Ingreso</span> {moment(usuario.createdAt).format( "DD-MM-YYYY")}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaWhatsapp className="mx-2 icon" /> {usuario.profile.telefonos}{" "}
+            <FaWhatsapp className="mx-2 icon" /> {usuario.profile ? usuario.profile.telefonos: 'Sin datos'}{" "}
             <span className="tiptext">Telefono personal</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
@@ -46,15 +98,15 @@ const ProfileCard = () => {
             <span className="tiptext">Mail personal</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaIdBadge className="mx-2 icon" /> {usuario.id}{" "}
+            <FaIdBadge className="mx-2 icon" /> {usuario._id}{" "}
             <span className="tiptext">Id</span>{" "}
           </ListGroupItem>
-          {/* <ListGroupItem className="tool">
+          <ListGroupItem className="tool">
             <FaSchool className="mx-2 icon" /> IPET 255{" "}
             <span className="tiptext">Establecimiento</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
-            <FaPhoneSquareAlt className="mx-2 icon" /> 358-423512{" "}
+            <FaPhoneSquareAlt className="mx-2 icon" /> {usuario.profile ? usuario.profile.telefonos: 'Sin datos'}{" "}
             <span className="tiptext">Telefono institucion</span>{" "}
           </ListGroupItem>
           <ListGroupItem className="tool">
@@ -63,17 +115,21 @@ const ProfileCard = () => {
           </ListGroupItem>
 
           <ListGroupItem className="tool">
-            <FaMapMarked className="mx-2 icon" /> Maria del mar 356 - CP3456{" "}
+            <FaMapMarked className="mx-2 icon" /> {usuario.profile ? usuario.profile.domicilio: 'Sin datos'}{" "}
             <span className="tiptext">Direccion establecimiento</span>{" "}
-          </ListGroupItem> */}
+          </ListGroupItem>
         </ListGroup>
         <Card.Body>
-          <Card.Link href="#"></Card.Link>
-          <Card.Link href="#"></Card.Link>
+          { usuario.status === true ?(<Button className=" btns-light btn " id={usuario._id} onClick={disableUser}><GiShieldDisabled/></Button>):(<Button className=" btns-light btn mx-2" id={usuario._id} onClick={habilitarUser}>Habilitar</Button>)}
+          <Button className="btns-light btn mx-1"  id={usuario._id} onClick={handleShowR}>Editar</Button>
+          <Button className="btns-light btn mx-3" id={usuario._id}  onClick={handleDeleteUser}><FaTrashAlt/></Button>
         </Card.Body>
       </Card>
     );
-  });
+  })}
+  </div>
+
+  </>);
 };
 
 export default ProfileCard;
