@@ -1,13 +1,10 @@
 import { createContext, useEffect, useState } from "react";
 import axiosClient from "../config/axiosClient";
 import jwt_decode from "jwt-decode";
-
 import { useNavigate } from "react-router-dom";
-
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 import "animate.css";
-
 export const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
@@ -46,7 +43,7 @@ const UserProvider = ({ children }) => {
       }
     }
   };
- //Manejo de registro de usuarios
+  //Manejo de registro de usuarios
   const registerUser = async (values) => {
     try {
       const dataTransform = {
@@ -78,11 +75,11 @@ const UserProvider = ({ children }) => {
         }).then((results) => {
           results.isConfirmed
             ? setTimeout(() => {
-                navigate("/");
-              }, 3000)
+              navigate("/");
+            }, 3000)
             : setTimeout(() => {
-                navigate("/");
-              }, 10000);
+              navigate("/");
+            }, 10000);
         });
       }
     } catch (error) {
@@ -128,7 +125,7 @@ const UserProvider = ({ children }) => {
     const logged = jwt_decode(data);
     return logged;
   };
-  
+
   //Listado de todos los usuarios registrados
   const getUsers = async () => {
     const { data } = await axiosClient.get("users/list");
@@ -143,15 +140,15 @@ const UserProvider = ({ children }) => {
       console.log(error);
     }
   }, []);
- 
+
   //listado de materias
   const getMaterias = async () => {
-      getAuth();
+    getAuth();
     const { data } = await axiosClient.get("/materias");
     setMat(data.materias);
     console.log(setMat);
   };
-  
+
   //Filtro de usuarios por su Rol
   const handleFilterUsers = (e) => {
     if (users.some((user) => user.rol === e.target.id)) {
@@ -168,10 +165,10 @@ const UserProvider = ({ children }) => {
       newFilter();
     }
   };
-  
+
   //Para buscar usuarios por nombre o apellido
   const handleSearchBar = async (e) => {
-    
+
     const { data } = await axiosClient.get("users/list");
     setSearch(e.target.value);
     setUsers(data.users);
@@ -179,13 +176,13 @@ const UserProvider = ({ children }) => {
 
   //Borrado de usuarios, solo por el Admin
   const handleDeleteUser = (e) => {
-     getAuth();
-    
+    getAuth();
+
     try {
       DeleteSwal.fire({
         icon: "warning",
         title: `Esta seguro de eliminar al usuario?`,
-        showClass:{
+        showClass: {
           popup: "animate__fadeIn"
         },
         hideClass: {
@@ -209,7 +206,7 @@ const UserProvider = ({ children }) => {
           const userId = e.target.id;
           const response = await axiosClient.delete(`users/delete/${userId}`);
           setDeleted(response.data);
-          
+
           if (response.data.ok === true) {
             SwalSucces.fire({
               icon: "succes",
@@ -222,7 +219,7 @@ const UserProvider = ({ children }) => {
               },
             });
             getUsers();
-          } 
+          }
         }
       });
     } catch (error) {
@@ -230,10 +227,10 @@ const UserProvider = ({ children }) => {
     }
   };
 
-  
 
-   
- 
+
+
+
   return (
     <UserContext.Provider
       value={{
@@ -255,9 +252,9 @@ const UserProvider = ({ children }) => {
         getUsers,
 
         getMaterias
-        
 
-       
+
+
 
       }}
     >
