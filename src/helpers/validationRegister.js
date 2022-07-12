@@ -1,9 +1,10 @@
 export const validationRegister = values => {
     let errors = {};
-  
+   
     if (!values.name.value) {
+
       errors.name = 'El nombre es obligatorio'
-    }else if(!/^[a-zA-Z]\s?[a-zA-z]{1,}'?-?\s?[a-zA-Z]{2,}?\s([a-zA-Z]{1,})\s?$/i.test(values.name.value))
+    }else if(!/^[a-zA-Z]{2,}$/i.test(values.name.value.split(" ").join("")))
      {
       errors.name = 'El nombre solo puede contener letras'
     }
@@ -15,7 +16,7 @@ export const validationRegister = values => {
   
     if (!values.lastname.value) {
       errors.lastname = 'El apellido es obligatorio'
-    }else if(!/^[a-zA-Z]\s?[a-zA-z]{1,}'?-?\s?[a-zA-Z]{2,}?\s([a-zA-Z]{1,})\s?$/i.test(values.lastname.value))
+    }else if(!/^[a-zA-Z]{2,}$/i.test(values.lastname.value.split(" ").join("")))
     {
      errors.lastname = 'El apellido solo puede contener letras'
    } else if (values.lastname.value.length < 2) {

@@ -35,7 +35,7 @@ const LoginForm = () => {
                                         <div className="form-floating mb-3">
                                             <Form.Control type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp} onBlur={handleBlur} />
                                                 <label for="floatingInput">Email</label>
-                                                {values.email.touch && errors.email && <Alert severity="error" variant="filled" className="mt-3" >{errors.email}</Alert>}
+                                                {values.email.touch && errors.email && <Alert severity="error" variant="outlined" className="mt-3 p-0" >{errors.email}</Alert>}
                                         </div>
                                         <div className="form-floating mb-3">
                                             <Form.Control type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onKeyUp={handleKeyUp} onBlur={handleBlur}/>
