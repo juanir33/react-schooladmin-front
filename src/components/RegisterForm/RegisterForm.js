@@ -8,11 +8,12 @@ import { Rating } from "@mui/material"
 import { useContext,  } from "react"
 import { UserContext } from "../../context/UserContext"
 import "../LoginForm/LoginForm.css"
+import {BiShow} from "react-icons/bi"
 
 
 const Register = ({children}) => {
 
-    const {registerUser,} = useContext(UserContext);
+    const {registerUser} = useContext(UserContext);
    
     
 
@@ -41,14 +42,14 @@ const Register = ({children}) => {
                                         </div>
                                         <div className="form-floating mb-3">
                                             <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" name="email" onKeyUp={handleKeyUp} onBlur={handleBlur}/>
-                                                <label for="floatingInput">Email</label>{values.email.touch &&errors.email && <Alert severity="error"  variant="filled"  className="m-1 p-0" >{errors.email}</Alert>}
+                                                <label for="floatingInput">Email</label>{values.email.touch &&errors.email && <Alert severity="error"  variant="filled"  className="m-1 p-1" >{errors.email}</Alert>}
                                         </div>
-                                        <div className="form-floating  mb-3">
-                                        <input type="text" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onChange={handleKeyUp} onBlur={handleBlur}/>
+                                        <div className="input-group form-floating  mb-3">
+                                        <input type="password" className="form-control" id="floatingPassword" placeholder="Contraseña" name="password" onChange={handleKeyUp} onBlur={handleBlur}/>
                                                 <label for="floatingPassword">Contraseña</label>{values.password.touch &&errors.password && <Alert severity="error"  variant="filled"  className="m-1 p-0" >{errors.password}</Alert>}
                                         </div>
                                         <div className="form-floating  mb-3">
-                                        <input type="text" className='form-control ' id="floatingPassword" placeholder="Contraseña" name="confirmPassword" onChange={handleKeyUp} onBlur={handleBlur}/>
+                                        <input type="password" className='form-control ' id="floatingPassword" placeholder="Contraseña" name="confirmPassword" onChange={handleKeyUp} onBlur={handleBlur}/>
                                                 <label for="floatingPassword">Confirma tu contraseña</label>{values.confirmPassword.touch &&errors.confirmPassword && <Alert severity="error"  variant="filled"  className="m-1 " >{errors.confirmPassword}</Alert>}
                                         </div>
                                         <div className="d-grid">
