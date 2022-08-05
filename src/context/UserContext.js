@@ -38,6 +38,7 @@ const UserProvider = ({ children }) => {
       setToken(data.token);
       setAuth(true);
       localStorage.setItem("token", data.token);
+      //navigate("/home")
     } catch (error) {
       console.log(error);
       setAuth(false);
