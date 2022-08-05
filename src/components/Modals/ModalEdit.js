@@ -28,8 +28,8 @@ const ModalEditRol = () => {
         getAuth();
         const userId = id;
         const sendData =  {rol: value.rol.toLowerCase()};
-        const data = (`users/changerol/${userId}`);
-       console.log(id);
+        const data = await axiosClient.post(`users/changerol/${userId}`, sendData);
+       console.log(data);
       } 
     
       

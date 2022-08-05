@@ -24,7 +24,7 @@ export const ModalContext = createContext()
       console.log(id);};
        
   return (
-      <ModalContext.Provider value={{showN, setShowN, handleCloseN, handleShowN,showE, setShowE, handleCloseE, showH, setShowH, setShowR, showR, handleShowE, handleCloseR, handleShowR, handleCloseH, handleShowH}}>
+      <ModalContext.Provider value={{showN, setShowN, handleCloseN, handleShowN,showE, setShowE, handleCloseE, showH, setShowH, setShowR, showR, handleShowE, handleCloseR, handleShowR, handleCloseH, handleShowH, id}}>
           {children}
       </ModalContext.Provider>
     
