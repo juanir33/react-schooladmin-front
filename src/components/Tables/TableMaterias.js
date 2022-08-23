@@ -14,7 +14,7 @@ export const TablesMaterias = () => {
   const { decoder, getAuth } = useContext(UserContext);
   const [alumnos, setAlumnos] = useState([]);
   const [materia, setMateria] = useState([]);
-  
+  const [notas, setNotas] = useState([]);
   const profesor = decoder();
   const nombreProf = profesor.profile.apellido;
   const idProfesor = profesor._id;
@@ -59,7 +59,9 @@ export const TablesMaterias = () => {
     const { data } = await axiosClient.get(`/notas/${alumnoId}/${materiaId}`);
     if(data.notas.length > 0) {
       data.notas.forEach(nota =>  { sessionStorage.setItem(`${alumnoId}`, JSON.stringify(nota.notas[0]))
-    })
+      
+    });
+    console.log(data);
     }else (sessionStorage.clear())
     
   };
