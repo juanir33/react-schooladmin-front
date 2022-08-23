@@ -35,24 +35,7 @@ const NavBar = () => {
             </Navbar.Collapse>
           ) : (
             <Navbar.Collapse className="justify-content-end">
-              <Button
-                variant="primary"
-                size="sm"
-                className="m-3 nav-buttons position-relative"
-              >
-                <MdEmail />
-                <span className=" bad position-absolute top-0 start-100 translate-middle p-2  border border-light rounded-circle"></span>
-                <span className="visually-hidden">unread messages</span>
-              </Button>
-              <Button
-                variant="primary"
-                size="sm"
-                className="m-3 nav-buttons position-relative"
-              >
-                <MdNotificationsActive />
-                <span className=" bad position-absolute top-0 start-100 translate-middle p-2  border border-light rounded-circle"></span>
-                <span className="visually-hidden">unread messages</span>
-              </Button>
+              
               <Navbar.Text>
                 <Dropdown as={ButtonGroup} className=" nav-link ">
                   <Button className="btns " onClick={handlePerfil} >
@@ -66,10 +49,7 @@ const NavBar = () => {
                   />
 
                   <Dropdown.Menu>
-                    <Dropdown.Item ><Link to="/profile" className="nav-link" id="user-a">Noticias</Link></Dropdown.Item>
-                    <Dropdown.Item>
-                    <Link to="/404" className="nav-link" id="user-a">Mensajes</Link>
-                    </Dropdown.Item>
+                   
                     <Dropdown.Divider/>
                     <Dropdown.Item >
                     <Button   onClick= {logOut} className=" " id="user-a">   Cerrar sesion </Button>

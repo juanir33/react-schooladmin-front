@@ -20,6 +20,7 @@ export const TablesMaterias = () => {
   const idProfesor = profesor._id;
   const { handleShowN, handleShowE } = useContext(ModalContext);
   const curso = "Segundo B";
+  const [matSelect, setMatselect] = useState('');
 
   localStorage.setItem("curso", JSON.stringify({ nombre: "Segundo B", _id: '6259c04c20ee4378a20edff6' }));
 
@@ -48,24 +49,35 @@ export const TablesMaterias = () => {
   }, []);
 
   const handleChange = (e)=>{
-
+    setMatselect(e.target.value);
     localStorage.setItem('materiaSelected', JSON.stringify(e.target.value))
-
+    //window.location.reload()
   }
-
+  
+  const getNotas = async (alumnoId, materiaId) => {
+    
+    const { data } = await axiosClient.get(`/notas/${alumnoId}/${materiaId}`);
+    if(data.notas.length > 0) {
+      data.notas.forEach(nota =>  { sessionStorage.setItem(`${alumnoId}`, JSON.stringify(nota.notas[0]))
+    })
+    }else (sessionStorage.clear())
+    
+  };
   
   
 
 
-
+ // getNotas("63041ae2a0be56a10ae31a65", "6304138aa0be56a10ae31681")
 
   
 
   const listafiltrada = alumnos.map((fil, index) => {
+    getNotas(fil._id, matSelect);
     return (
+
       <tr key={index}>
         <td>{fil.profile.apellido + " " + fil.profile.nombre}</td>
-        {/* //Aqui hariamos los pedidos, de notas y mostrar en la tabla  */}
+        <td>{JSON.parse(sessionStorage.getItem(`${fil._id}`))}</td>
         
 
       </tr>

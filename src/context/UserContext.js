@@ -24,7 +24,7 @@ const UserProvider = ({ children }) => {
   const SwalSucces = withReactContent(Swal);
   const SwalError = withReactContent(Swal);
 
-
+  
   //Manejo del login
   const loginUser = async (values) => {
     try {
@@ -148,9 +148,9 @@ const UserProvider = ({ children }) => {
   //listado de materias
   const getMaterias = async () => {
       getAuth();
-    const { data } = await axiosClient.get("/materias");
-    setMat(data.materias);
-    console.log(setMat);
+    const response = await axiosClient.get("/materias");
+    setMat(response.data.materias);
+    console.log(mat);
   };
   
   //Filtro de usuarios por su Rol

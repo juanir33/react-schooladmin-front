@@ -1,68 +1,66 @@
 import "./MateriaCards.css";
 import { Button, Card, Form, ListGroup, ListGroupItem } from "react-bootstrap";
 import { RiCalendarTodoFill } from "react-icons/ri";
-import { useState } from "react";
+import { useState, useContext, useEffect} from "react";
 import axiosClient from "../../config/axiosClient";
-import getAuth from "../../context/UserContext";
-import getMaterias from "../../context/UserContext";
+import {UserContext} from "../../context/UserContext";
 
 const initialState = {name:"", abreviatura:"" }
 
 const ListaMaterias= () => {
-
-  const addMateria = async () => {
-    const data = await axiosClient.post("/materias");
-    console.log(data);
+  const { getAuth} = useContext(UserContext);
+  const [form, setForm] = useState();
+ const [mat, setMat] = useState([]);
+  
+ const getMaterias = async()=>{
+   const response = await axiosClient.get('/materias');
+   setMat(response.data.materias)
+ }
+ 
+ useEffect(() => {
+    getMaterias();
+  }, [])
+  const handleForm = (e) => {
+    setForm({
+      ...form,
+      [e.target.name]: e.target.value,
+    });
+    console.log(form);
   }
   
-  const delMateria = async () => {
+  console.log(form);
+ 
+  const addMateria = async (e) => {
+    e.preventDefault();
+    let materia = {
+      nombre: form.nombre,
+      abreviatura: form.abreviatura,
+    }
+    console.log(materia);
+
+    const data = await axiosClient.post("/materias", materia);
+    console.log(data.data);
+    getMaterias();
+  }
+  
+  const delMateria = async (e) => {
     getAuth();
-    const data = await axiosClient.delete("/materias:id");
+    let id = e.target.id;
+    console.log(id);
+    const data = await axiosClient.delete(`/materias/${id}`);
+    getMaterias();
   }
 
   const putMateria = async () => {
     getAuth();
     const data = await axiosClient.put("/materias:id");
   }
-  const [mat, setMat] = useState([]);  
-  const getMaterias = async () => {
-    getAuth();
-    try {
-      const response = await axiosClient.get("/materias");
-      let data  = response;
-    } catch (error) {
-        console.warn(error);
-    }
-  }; 
-  getMaterias();
-  const [form, setForm] = useState();
-  const handleForm = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-    console.log(e.target.value);
-  }
+  
 
- let materias = [ 
-    {
-      nombre: "Matematicas",
-      abreviatura: "MAT1",
-    },
-    {
-      nombre: "Historia",
-      abreviatura: "HIS1",
-    },
-    {
-      nombre: "Lenguas",
-      abreviatura: "LENG1",
-    },
-    {
-      nombre: "Fisica",
-      abreviatura: "FIS1",
-    }
-  ];
-
+  
+ 
+ let materias = mat !== undefined ? mat : [];
+console.log(materias);
   const listMaterias = materias.map((materia) => {
     return (
       <Card style={{ width: "12rem" }} className="profile-card m-3">
@@ -77,8 +75,8 @@ const ListaMaterias= () => {
         <ListGroup className="list-group-flush ">
         </ListGroup>
         <Card.Body className="d-flex justify-content-between">
-          <Button onClick={(e)=> putMateria(e)}className="btns-light">Editar</Button>
-          <Button onClick= {(e)=>delMateria(e)} className="btns-light">Eliminar</Button>
+          
+          <Button onClick= {(e)=>delMateria(e)} id={`${materia._id}`} className="btns-light">Eliminar</Button>
         </Card.Body>
       </Card>
     );
@@ -87,7 +85,7 @@ const ListaMaterias= () => {
  
   return (
     <div>
-      <Form onSubmit={addMateria} >
+      <Form onSubmit={(e) => addMateria(e) }>
       <Card style={{ width: "12rem" }} className="profile-card m-3">
         <Card.Img variant="top" src="" />
         <Card.Body>

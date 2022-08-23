@@ -38,10 +38,10 @@ const ModalNotas = () => {
       alumno: `${e.target.id}`,
       notas: [parseInt(values.nota)]
       
-    };console.log(sendData);
+    };console.log(e.target.id);
     
     try {
-      const respuesta = await axiosClient.post('notas', sendData);
+      const respuesta = await axiosClient.post('/notas', sendData);
       console.log(respuesta.data);
 
     } catch (error) {
@@ -94,7 +94,7 @@ const ModalNotas = () => {
                       step="0.01"
                       name="nota"
                      onKeyUp={handleKeyUp}
-                     id={alumno.id}/>
+                     id={alumno._id}/>
                      <Button id={alumno._id} className='btns btn'onClick={handleClick}><FaCheck/></Button>
                   </li>
 

@@ -61,6 +61,7 @@ const SearchBar = () => {
 
       if(Object.keys(errors).length === 0){
       const {data} = await axiosClient.get('users/list')
+      console.log(data);
       const filter = data.users.filter(user => (user.profile.nombre.toLowerCase() === values.search.value.toLowerCase() || user.profile.apellido.toLowerCase() === values.search.value.toLowerCase()) )
       if(filter.length === 0){
       
